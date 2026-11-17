@@ -9,7 +9,7 @@ echo Launching standalone Windows PC release...
 
 if exist "%~dp0dist\TwoPuppies_Windows_x64\TwoPuppiesTheGreatAdventure.exe" (
     cd /d "%~dp0dist\TwoPuppies_Windows_x64"
-    start "" "TwoPuppiesTheGreatAdventure.exe"
+    start "" "TwoPuppiesTheGreatAdventure.exe" --main-pack "TwoPuppiesTheGreatAdventure.pck"
     exit /b 0
 )
 
