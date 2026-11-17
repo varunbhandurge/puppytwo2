@@ -1,0 +1,282 @@
+[gd_scene load_steps=32 format=3 uid="uid://cch6toy001"]
+
+[ext_resource type="Script" path="res://src/chapters/chapter_6_toy_factory/chapter_6_toy_factory.gd" id="1_ch6"]
+[ext_resource type="Script" path="res://src/camera/split_screen_manager.gd" id="2_split"]
+[ext_resource type="PackedScene" path="res://src/ui/hud.tscn" id="3_hud"]
+[ext_resource type="PackedScene" path="res://src/characters/bruno.tscn" id="4_bruno"]
+[ext_resource type="PackedScene" path="res://src/characters/milo.tscn" id="5_milo"]
+[ext_resource type="Script" path="res://src/enemies/boss_clockwork_titan.gd" id="6_titan"]
+[ext_resource type="PackedScene" path="res://src/interactables/golden_bone_pickup.tscn" id="7_bone_scene"]
+[ext_resource type="Script" path="res://src/interactables/checkpoint.gd" id="8_cp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="Sky_Factory"]
+sky_top_color = Color(0.18, 0.2, 0.28, 1)
+sky_horizon_color = Color(0.72, 0.58, 0.45, 1)
+ground_bottom_color = Color(0.14, 0.12, 0.12, 1)
+
+[sub_resource type="Sky" id="Sky_T"]
+sky_material = SubResource("Sky_Factory")
+
+[sub_resource type="Environment" id="Env_T"]
+background_mode = 2
+sky = SubResource("Sky_T")
+ambient_light_source = 3
+ambient_light_color = Color(0.92, 0.82, 0.68, 1)
+ambient_light_energy = 0.65
+tonemap_mode = 3
+tonemap_exposure = 1.15
+ssao_enabled = true
+ssao_radius = 1.8
+ssao_intensity = 3.2
+ssil_enabled = true
+ssil_radius = 2.2
+ssil_intensity = 1.2
+glow_enabled = true
+glow_intensity = 0.4
+glow_bloom = 0.15
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.018
+volumetric_fog_albedo = Color(1, 0.9, 0.78, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_IndustrialFloor"]
+albedo_color = Color(0.28, 0.3, 0.34, 1)
+roughness = 0.35
+metallic = 0.4
+
+[sub_resource type="BoxMesh" id="Mesh_Floor"]
+material = SubResource("Mat_IndustrialFloor")
+size = Vector3(70, 1, 70)
+
+[sub_resource type="BoxShape3D" id="Shape_Floor"]
+size = Vector3(70, 1, 70)
+
+[sub_resource type="StandardMaterial3D" id="Mat_ConveyorBelt"]
+albedo_color = Color(0.15, 0.16, 0.18, 1)
+roughness = 0.7
+
+[sub_resource type="BoxMesh" id="Mesh_Conveyor"]
+material = SubResource("Mat_ConveyorBelt")
+size = Vector3(7, 1.4, 30)
+
+[sub_resource type="StandardMaterial3D" id="Mat_ToyBlockRed"]
+albedo_color = Color(0.9, 0.18, 0.18, 1)
+roughness = 0.4
+
+[sub_resource type="BoxMesh" id="Mesh_ToyBlockA"]
+material = SubResource("Mat_ToyBlockRed")
+size = Vector3(2.5, 2.5, 2.5)
+
+[sub_resource type="StandardMaterial3D" id="Mat_ToyBlockBlue"]
+albedo_color = Color(0.18, 0.45, 0.88, 1)
+roughness = 0.4
+
+[sub_resource type="BoxMesh" id="Mesh_ToyBlockB"]
+material = SubResource("Mat_ToyBlockBlue")
+size = Vector3(2.5, 2.5, 2.5)
+
+[sub_resource type="StandardMaterial3D" id="Mat_ToyBlockYellow"]
+albedo_color = Color(0.95, 0.82, 0.15, 1)
+roughness = 0.4
+
+[sub_resource type="BoxMesh" id="Mesh_ToyBlockC"]
+material = SubResource("Mat_ToyBlockYellow")
+size = Vector3(2.5, 2.5, 2.5)
+
+[sub_resource type="StandardMaterial3D" id="Mat_BrassGear"]
+albedo_color = Color(0.92, 0.75, 0.25, 1)
+metallic = 0.95
+roughness = 0.2
+
+[sub_resource type="CylinderMesh" id="Mesh_BigGear"]
+material = SubResource("Mat_BrassGear")
+top_radius = 3.2
+bottom_radius = 3.2
+height = 0.4
+
+[sub_resource type="StandardMaterial3D" id="Mat_SteelChute"]
+albedo_color = Color(0.4, 0.42, 0.45, 1)
+metallic = 0.85
+roughness = 0.3
+
+[sub_resource type="BoxMesh" id="Mesh_OreChute"]
+material = SubResource("Mat_SteelChute")
+size = Vector3(6, 4.2, 0.5)
+
+[node name="Chapter6ToyFactory" type="Node3D"]
+script = ExtResource("1_ch6")
+
+[node name="SplitScreenManager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_split")
+
+[node name="SplitContainer" type="BoxContainer" parent="SplitScreenManager"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ViewportContainer1" type="SubViewportContainer" parent="SplitScreenManager/SplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport1" type="SubViewport" parent="SplitScreenManager/SplitContainer/ViewportContainer1"]
+handle_input_locally = false
+size = Vector2i(958, 1080)
+render_target_update_mode = 4
+
+[node name="ViewportContainer2" type="SubViewportContainer" parent="SplitScreenManager/SplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport2" type="SubViewport" parent="SplitScreenManager/SplitContainer/ViewportContainer2"]
+handle_input_locally = false
+size = Vector2i(958, 1080)
+render_target_update_mode = 4
+
+[node name="DividerBar" type="ColorRect" parent="SplitScreenManager"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.9, 0.4, 0.9)
+
+[node name="HUD" parent="." instance=ExtResource("3_hud")]
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Env_T")
+
+[node name="FactoryLight" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(0.866025, -0.353553, 0.353553, 0, 0.707107, 0.707107, -0.5, -0.612372, 0.612372, 0, 20, 0)
+light_color = Color(1, 0.9, 0.78, 1)
+light_energy = 1.6
+shadow_enabled = true
+shadow_blur = 1.6
+
+[node name="Ground" type="StaticBody3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+collision_layer = 1
+collision_mask = 31
+
+[node name="Mesh" type="MeshInstance3D" parent="World/Ground"]
+mesh = SubResource("Mesh_Floor")
+
+[node name="Shape" type="CollisionShape3D" parent="World/Ground"]
+shape = SubResource("Shape_Floor")
+
+[node name="ConveyorBelt" type="StaticBody3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.7, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="World/ConveyorBelt"]
+mesh = SubResource("Mesh_Conveyor")
+
+[node name="ToyBlockTowers" type="Node3D" parent="World"]
+
+[node name="BlockA" type="MeshInstance3D" parent="World/ToyBlockTowers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.25, 6)
+mesh = SubResource("Mesh_ToyBlockA")
+
+[node name="BlockB" type="MeshInstance3D" parent="World/ToyBlockTowers"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 12, 3.75, 6)
+mesh = SubResource("Mesh_ToyBlockB")
+
+[node name="BlockC" type="MeshInstance3D" parent="World/ToyBlockTowers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 1.25, -4)
+mesh = SubResource("Mesh_ToyBlockC")
+
+[node name="ClockworkGears" type="Node3D" parent="World"]
+
+[node name="Gear1" type="MeshInstance3D" parent="World/ClockworkGears"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 16, 4.0, -10)
+mesh = SubResource("Mesh_BigGear")
+
+[node name="Gear2" type="MeshInstance3D" parent="World/ClockworkGears"]
+transform = Transform3D(0.8, 0, 0, 0, 0, -0.8, 0, 0.8, 0, 11, 7.5, -10)
+mesh = SubResource("Mesh_BigGear")
+
+[node name="OreChuteGate" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, -30)
+
+[node name="Mesh" type="MeshInstance3D" parent="World/OreChuteGate"]
+mesh = SubResource("Mesh_OreChute")
+
+[node name="Characters" type="Node3D" parent="World"]
+
+[node name="Bruno" parent="World/Characters" instance=ExtResource("4_bruno")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.2, 16)
+
+[node name="Milo" parent="World/Characters" instance=ExtResource("5_milo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.2, 16)
+
+[node name="BossClockworkTitan" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, -16)
+script = ExtResource("6_titan")
+
+[node name="Checkpoints" type="Node3D" parent="World"]
+
+[node name="CheckpointAssembly" type="Area3D" parent="World/Checkpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 14)
+script = ExtResource("8_cp")
+checkpoint_id = "cp_ch6_assembly"
+
+[node name="CheckpointConveyor" type="Area3D" parent="World/Checkpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.5, 0)
+script = ExtResource("8_cp")
+checkpoint_id = "cp_ch6_conveyor"
+
+[node name="CheckpointChute" type="Area3D" parent="World/Checkpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -26)
+script = ExtResource("8_cp")
+checkpoint_id = "cp_ch6_chute"
+
+[node name="GoldenBones" type="Node3D" parent="World"]
+
+[node name="Bone1" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 14)
+bone_id = "bone_ch6_01"
+
+[node name="Bone2" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 2.0, 8)
+bone_id = "bone_ch6_02"
+
+[node name="Bone3" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1.2, 4)
+bone_id = "bone_ch6_03"
+
+[node name="Bone4" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.5, -6)
+bone_id = "bone_ch6_04"
+
+[node name="Bone5" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 2.5, -12)
+bone_id = "bone_ch6_05"
+
+[node name="Bone6" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 1.0, -18)
+bone_id = "bone_ch6_06"
+
+[node name="Bone7" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.5, -24)
+bone_id = "bone_ch6_07"
+
+[node name="Bone8" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -28)
+bone_id = "bone_ch6_08"

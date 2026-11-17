@@ -1,0 +1,501 @@
+[gd_scene load_steps=6 format=3 uid="uid://cpause001"]
+
+[ext_resource type="Script" path="res://src/ui/pause_menu.gd" id="1_pause"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.05, 0.07, 0.1, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.78, 0.28, 0.8)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 14
+shadow_color = Color(0, 0, 0, 0.6)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hub_title"]
+font_size = 20
+font_color = Color(1, 0.86, 0.35, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_section"]
+font_size = 15
+font_color = Color(0.9, 0.92, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_map_panel"]
+bg_color = Color(0.08, 0.1, 0.14, 0.8)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3, 0.45, 0.65, 0.6)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="PauseMenu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pause")
+
+[node name="BackdropOverlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.02, 0.04, 0.75)
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 40
+
+[node name="Panel" type="PanelContainer" parent="Margin"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+
+[node name="VBox" type="VBoxContainer" parent="Margin/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HeaderBar" type="MarginContainer" parent="Margin/Panel/VBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+
+[node name="Title" type="Label" parent="Margin/Panel/VBox/HeaderBar"]
+layout_mode = 2
+text = "🐾 TWO PUPPIES: THE GREAT ADVENTURE — PAUSE & SETTINGS HUB"
+label_settings = SubResource("LabelSettings_hub_title")
+horizontal_alignment = 1
+
+[node name="TabContainer" type="TabContainer" parent="Margin/Panel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="ObjectivesMap" type="MarginContainer" parent="Margin/Panel/VBox/TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="Margin/Panel/VBox/TabContainer/ObjectivesMap"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="MissionTitle" type="Label" parent="Margin/Panel/VBox/TabContainer/ObjectivesMap/VBox"]
+layout_mode = 2
+text = "🎯 CURRENT MISSION: CHAPTER 1 — THE BACKYARD"
+label_settings = SubResource("LabelSettings_section")
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Panel/VBox/TabContainer/ObjectivesMap/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="MapPanel" type="PanelContainer" parent="Margin/Panel/VBox/TabContainer/ObjectivesMap/VBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_map_panel")
+
+[node name="Margin" type="MarginContainer" parent="Margin/Panel/VBox/TabContainer/ObjectivesMap/VBox/HBox/MapPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
+
+[node name="MapText" type="RichTextLabel" parent="Margin/Panel/VBox/TabContainer/ObjectivesMap/VBox/HBox/MapPanel/Margin"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]TACTICAL MAP OVERVIEW (CHAPTER 1)[/b]
+
+▲ [color=#55aaff]NORTH[/color] ──────────────────────────────────────────────
+│ [color=#ffd166][EXIT][/color] [b]Back Privacy Gate[/b] (Escape to Forgotten Garden)
+│ 
+│ [color=#ff6b6b][BOSS ARENA][/color] [b]Mechanical Sprinkler[/b] (Co-op Shutoff)
+│ 
+│ [color=#06d6a0][MINI-GAME][/color] [b]Squeaky Ball Fetch Basket[/b]
+│ 
+│ [b]Picnic Table & Bench[/b] (Snout-boost puzzle)
+│ 
+│ [b]Garden Hose Labyrinth[/b] (Low-crawl tunnel)
+│ 
+│ [b]The Sandbox Trench[/b] (Dig mound ramp)
+│ 
+│ [color=#ffd166][SPAWN][/color] [b]The Doghouse Enclave & Stepping Stones[/b]
+│ 
+▼ [b]South Brick House Wall & Patio Deck[/b]
+────────────────────────────────────────────────────"
+
+[node name="BriefingPanel" type="PanelContainer" parent="Margin/Panel/VBox/TabContainer/ObjectivesMap/VBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_map_panel")
+
+[node name="Margin" type="MarginContainer" parent="Margin/Panel/VBox/TabContainer/ObjectivesMap/VBox/HBox/BriefingPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
+
+[node name="BriefingText" type="RichTextLabel" parent="Margin/Panel/VBox/TabContainer/ObjectivesMap/VBox/HBox/BriefingPanel/Margin"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]COOPERATIVE ROLES & CONTROLS[/b]
+
+[color=#ffd166]🐕 BRUNO (Golden Retriever / Heavy Prowler):[/color]
+• [b]Move:[/b] W, A, S, D / Left Stick
+• [b]Jump:[/b] Space / Button A
+• [b]Mighty Dig:[/b] E / Button X (Dig dirt trenches and sand ramps)
+• [b]Vocal Bark:[/b] F / Button B (Distract enemies, deflect projectiles)
+• [b]Snout-Boost:[/b] E (Launch Milo to higher platforms)
+
+[color=#06d6a0]🐕‍🦺 MILO (Corgi / Scout & Mechanic):[/color]
+• [b]Move:[/b] Arrow Keys / Left Stick
+• [b]Jump:[/b] R-Ctrl / Button A
+• [b]Scent-o-Vision:[/b] V / Button Y (Reveal hidden paths and trails)
+• [b]Low-Crawl:[/b] C / Button X (Squeeze under fences and burrows)
+• [b]Interact / Lever:[/b] E / Button B (Activate small switches)"
+
+[node name="Puppies" type="MarginContainer" parent="Margin/Panel/VBox/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="Margin/Panel/VBox/TabContainer/Puppies"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Panel/VBox/TabContainer/Puppies/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 40
+
+[node name="BrunoCol" type="VBoxContainer" parent="Margin/Panel/VBox/TabContainer/Puppies/VBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Title1" type="Label" parent="Margin/Panel/VBox/TabContainer/Puppies/VBox/HBox/BrunoCol"]
+layout_mode = 2
+text = "🐕 PLAYER 1 (BRUNO)"
+label_settings = SubResource("LabelSettings_section")
+
+[node name="NameLbl" type="Label" parent="Margin/Panel/VBox/TabContainer/Puppies/VBox/HBox/BrunoCol"]
+layout_mode = 2
+text = "Puppy Name:"
+
+[node name="P1NameEdit" type="LineEdit" parent="Margin/Panel/VBox/TabContainer/Puppies/VBox/HBox/BrunoCol"]
+layout_mode = 2
+text = "Bruno"
+
+[node name="CollarLbl" type="Label" parent="Margin/Panel/VBox/TabContainer/Puppies/VBox/HBox/BrunoCol"]
+layout_mode = 2
+text = "Collar Color:"
+
+[node name="P1CollarOption" type="OptionButton" parent="Margin/Panel/VBox/TabContainer/Puppies/VBox/HBox/BrunoCol"]
+layout_mode = 2
+
+[node name="TagLbl" type="Label" parent="Margin/Panel/VBox/TabContainer/Puppies/VBox/HBox/BrunoCol"]
+layout_mode = 2
+text = "Collar Tag Charm:"
+
+[node name="P1TagOption" type="OptionButton" parent="Margin/Panel/VBox/TabContainer/Puppies/VBox/HBox/BrunoCol"]
+layout_mode = 2
+
+[node name="FurLbl" type="Label" parent="Margin/Panel/VBox/TabContainer/Puppies/VBox/HBox/BrunoCol"]
+layout_mode = 2
+text = "Coat Tone:"
+
+[node name="P1FurOption" type="OptionButton" parent="Margin/Panel/VBox/TabContainer/Puppies/VBox/HBox/BrunoCol"]
+layout_mode = 2
+
+[node name="MiloCol" type="VBoxContainer" parent="Margin/Panel/VBox/TabContainer/Puppies/VBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Title2" type="Label" parent="Margin/Panel/VBox/TabContainer/Puppies/VBox/HBox/MiloCol"]
+layout_mode = 2
+text = "🐕‍🦺 PLAYER 2 (MILO)"
+label_settings = SubResource("LabelSettings_section")
+
+[node name="NameLbl" type="Label" parent="Margin/Panel/VBox/TabContainer/Puppies/VBox/HBox/MiloCol"]
+layout_mode = 2
+text = "Puppy Name:"
+
+[node name="P2NameEdit" type="LineEdit" parent="Margin/Panel/VBox/TabContainer/Puppies/VBox/HBox/MiloCol"]
+layout_mode = 2
+text = "Milo"
+
+[node name="CollarLbl" type="Label" parent="Margin/Panel/VBox/TabContainer/Puppies/VBox/HBox/MiloCol"]
+layout_mode = 2
+text = "Collar Color:"
+
+[node name="P2CollarOption" type="OptionButton" parent="Margin/Panel/VBox/TabContainer/Puppies/VBox/HBox/MiloCol"]
+layout_mode = 2
+
+[node name="TagLbl" type="Label" parent="Margin/Panel/VBox/TabContainer/Puppies/VBox/HBox/MiloCol"]
+layout_mode = 2
+text = "Collar Tag Charm:"
+
+[node name="P2TagOption" type="OptionButton" parent="Margin/Panel/VBox/TabContainer/Puppies/VBox/HBox/MiloCol"]
+layout_mode = 2
+
+[node name="FurLbl" type="Label" parent="Margin/Panel/VBox/TabContainer/Puppies/VBox/HBox/MiloCol"]
+layout_mode = 2
+text = "Coat Tone:"
+
+[node name="P2FurOption" type="OptionButton" parent="Margin/Panel/VBox/TabContainer/Puppies/VBox/HBox/MiloCol"]
+layout_mode = 2
+
+[node name="ApplyCustomButton" type="Button" parent="Margin/Panel/VBox/TabContainer/Puppies/VBox"]
+custom_minimum_size = Vector2(240, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "✨ Apply Customization (Real-Time Update)"
+
+[node name="Levels" type="MarginContainer" parent="Margin/Panel/VBox/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="Scroll" type="ScrollContainer" parent="Margin/Panel/VBox/TabContainer/Levels"]
+layout_mode = 2
+
+[node name="LevelList" type="VBoxContainer" parent="Margin/Panel/VBox/TabContainer/Levels/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Settings" type="MarginContainer" parent="Margin/Panel/VBox/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="Margin/Panel/VBox/TabContainer/Settings"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ResHBox" type="HBoxContainer" parent="Margin/Panel/VBox/TabContainer/Settings/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Panel/VBox/TabContainer/Settings/VBox/ResHBox"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Screen Resolution:"
+
+[node name="ResolutionOption" type="OptionButton" parent="Margin/Panel/VBox/TabContainer/Settings/VBox/ResHBox"]
+custom_minimum_size = Vector2(200, 36)
+layout_mode = 2
+
+[node name="WindowModeHBox" type="HBoxContainer" parent="Margin/Panel/VBox/TabContainer/Settings/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Panel/VBox/TabContainer/Settings/VBox/WindowModeHBox"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Display Mode:"
+
+[node name="WindowModeOption" type="OptionButton" parent="Margin/Panel/VBox/TabContainer/Settings/VBox/WindowModeHBox"]
+custom_minimum_size = Vector2(200, 36)
+layout_mode = 2
+
+[node name="VsyncHBox" type="HBoxContainer" parent="Margin/Panel/VBox/TabContainer/Settings/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Panel/VBox/TabContainer/Settings/VBox/VsyncHBox"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Vertical Sync (V-Sync):"
+
+[node name="VsyncCheck" type="CheckBox" parent="Margin/Panel/VBox/TabContainer/Settings/VBox/VsyncHBox"]
+layout_mode = 2
+button_pressed = true
+text = "Enabled"
+
+[node name="SoundToggleHBox" type="HBoxContainer" parent="Margin/Panel/VBox/TabContainer/Settings/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Panel/VBox/TabContainer/Settings/VBox/SoundToggleHBox"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Audio / Sound:"
+
+[node name="SoundCheck" type="CheckBox" parent="Margin/Panel/VBox/TabContainer/Settings/VBox/SoundToggleHBox"]
+layout_mode = 2
+button_pressed = true
+text = "Sound On"
+
+[node name="MasterVolHBox" type="HBoxContainer" parent="Margin/Panel/VBox/TabContainer/Settings/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Panel/VBox/TabContainer/Settings/VBox/MasterVolHBox"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Master Volume:"
+
+[node name="MasterSlider" type="HSlider" parent="Margin/Panel/VBox/TabContainer/Settings/VBox/MasterVolHBox"]
+custom_minimum_size = Vector2(240, 24)
+layout_mode = 2
+size_flags_vertical = 4
+value = 100.0
+
+[node name="MusicVolHBox" type="HBoxContainer" parent="Margin/Panel/VBox/TabContainer/Settings/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Panel/VBox/TabContainer/Settings/VBox/MusicVolHBox"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Music Volume:"
+
+[node name="MusicSlider" type="HSlider" parent="Margin/Panel/VBox/TabContainer/Settings/VBox/MusicVolHBox"]
+custom_minimum_size = Vector2(240, 24)
+layout_mode = 2
+size_flags_vertical = 4
+value = 80.0
+
+[node name="SfxVolHBox" type="HBoxContainer" parent="Margin/Panel/VBox/TabContainer/Settings/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Panel/VBox/TabContainer/Settings/VBox/SfxVolHBox"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "SFX & Voices (Barking/Yips):"
+
+[node name="SfxSlider" type="HSlider" parent="Margin/Panel/VBox/TabContainer/Settings/VBox/SfxVolHBox"]
+custom_minimum_size = Vector2(240, 24)
+layout_mode = 2
+size_flags_vertical = 4
+value = 90.0
+
+[node name="SplitHBox" type="HBoxContainer" parent="Margin/Panel/VBox/TabContainer/Settings/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Panel/VBox/TabContainer/Settings/VBox/SplitHBox"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Co-op Split-Screen:"
+
+[node name="SplitModeButton" type="Button" parent="Margin/Panel/VBox/TabContainer/Settings/VBox/SplitHBox"]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+text = "Split Mode: Side-by-Side (Vertical)"
+
+[node name="SaveLoad" type="MarginContainer" parent="Margin/Panel/VBox/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="Margin/Panel/VBox/TabContainer/SaveLoad"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Slot1HBox" type="HBoxContainer" parent="Margin/Panel/VBox/TabContainer/SaveLoad/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Slot1Label" type="Label" parent="Margin/Panel/VBox/TabContainer/SaveLoad/VBox/Slot1HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Slot 1: [ Empty Save Slot ]"
+
+[node name="Slot1SaveBtn" type="Button" parent="Margin/Panel/VBox/TabContainer/SaveLoad/VBox/Slot1HBox"]
+custom_minimum_size = Vector2(110, 36)
+layout_mode = 2
+text = "💾 Save"
+
+[node name="Slot1LoadBtn" type="Button" parent="Margin/Panel/VBox/TabContainer/SaveLoad/VBox/Slot1HBox"]
+custom_minimum_size = Vector2(110, 36)
+layout_mode = 2
+disabled = true
+text = "📂 Load"
+
+[node name="Slot2HBox" type="HBoxContainer" parent="Margin/Panel/VBox/TabContainer/SaveLoad/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Slot2Label" type="Label" parent="Margin/Panel/VBox/TabContainer/SaveLoad/VBox/Slot2HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Slot 2: [ Empty Save Slot ]"
+
+[node name="Slot2SaveBtn" type="Button" parent="Margin/Panel/VBox/TabContainer/SaveLoad/VBox/Slot2HBox"]
+custom_minimum_size = Vector2(110, 36)
+layout_mode = 2
+text = "💾 Save"
+
+[node name="Slot2LoadBtn" type="Button" parent="Margin/Panel/VBox/TabContainer/SaveLoad/VBox/Slot2HBox"]
+custom_minimum_size = Vector2(110, 36)
+layout_mode = 2
+disabled = true
+text = "📂 Load"
+
+[node name="Slot3HBox" type="HBoxContainer" parent="Margin/Panel/VBox/TabContainer/SaveLoad/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Slot3Label" type="Label" parent="Margin/Panel/VBox/TabContainer/SaveLoad/VBox/Slot3HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Slot 3: [ Empty Save Slot ]"
+
+[node name="Slot3SaveBtn" type="Button" parent="Margin/Panel/VBox/TabContainer/SaveLoad/VBox/Slot3HBox"]
+custom_minimum_size = Vector2(110, 36)
+layout_mode = 2
+text = "💾 Save"
+
+[node name="Slot3LoadBtn" type="Button" parent="Margin/Panel/VBox/TabContainer/SaveLoad/VBox/Slot3HBox"]
+custom_minimum_size = Vector2(110, 36)
+layout_mode = 2
+disabled = true
+text = "📂 Load"
+
+[node name="Footer" type="HBoxContainer" parent="Margin/Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="Margin/Panel/VBox/Footer"]
+custom_minimum_size = Vector2(180, 44)
+layout_mode = 2
+text = "▶ RESUME GAME"
+
+[node name="QuitButton" type="Button" parent="Margin/Panel/VBox/Footer"]
+custom_minimum_size = Vector2(180, 44)
+layout_mode = 2
+text = "🚪 QUIT TO MENU"

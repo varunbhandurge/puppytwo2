@@ -1,0 +1,270 @@
+[gd_scene load_steps=32 format=3 uid="uid://cch7dark001"]
+
+[ext_resource type="Script" path="res://src/chapters/chapter_7_dark_underground/chapter_7_dark_underground.gd" id="1_ch7"]
+[ext_resource type="Script" path="res://src/camera/split_screen_manager.gd" id="2_split"]
+[ext_resource type="PackedScene" path="res://src/ui/hud.tscn" id="3_hud"]
+[ext_resource type="PackedScene" path="res://src/characters/bruno.tscn" id="4_bruno"]
+[ext_resource type="PackedScene" path="res://src/characters/milo.tscn" id="5_milo"]
+[ext_resource type="Script" path="res://src/enemies/boss_mole_king.gd" id="6_mole"]
+[ext_resource type="PackedScene" path="res://src/interactables/golden_bone_pickup.tscn" id="7_bone_scene"]
+[ext_resource type="Script" path="res://src/interactables/checkpoint.gd" id="8_cp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="Sky_Cave"]
+sky_top_color = Color(0.04, 0.05, 0.12, 1)
+sky_horizon_color = Color(0.15, 0.12, 0.25, 1)
+ground_bottom_color = Color(0.06, 0.06, 0.08, 1)
+
+[sub_resource type="Sky" id="Sky_C"]
+sky_material = SubResource("Sky_Cave")
+
+[sub_resource type="Environment" id="Env_C"]
+background_mode = 2
+sky = SubResource("Sky_C")
+ambient_light_source = 3
+ambient_light_color = Color(0.25, 0.38, 0.65, 1)
+ambient_light_energy = 0.55
+tonemap_mode = 3
+tonemap_exposure = 1.2
+ssao_enabled = true
+ssao_radius = 2.2
+ssao_intensity = 3.6
+ssil_enabled = true
+ssil_radius = 2.4
+ssil_intensity = 1.3
+glow_enabled = true
+glow_intensity = 0.55
+glow_bloom = 0.22
+glow_hdr_threshold = 0.9
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.028
+volumetric_fog_albedo = Color(0.35, 0.55, 0.85, 1)
+volumetric_fog_emission = Color(0.05, 0.08, 0.15, 1)
+volumetric_fog_gi_inject = 1.4
+
+[sub_resource type="StandardMaterial3D" id="Mat_CavernStone"]
+albedo_color = Color(0.18, 0.17, 0.2, 1)
+roughness = 0.85
+
+[sub_resource type="BoxMesh" id="Mesh_Floor"]
+material = SubResource("Mat_CavernStone")
+size = Vector3(80, 1, 80)
+
+[sub_resource type="BoxShape3D" id="Shape_Floor"]
+size = Vector3(80, 1, 80)
+
+[sub_resource type="StandardMaterial3D" id="Mat_CyanCrystal"]
+albedo_color = Color(0.15, 0.88, 0.95, 1)
+roughness = 0.15
+emission_enabled = true
+emission = Color(0.1, 0.85, 0.95, 1)
+emission_energy_multiplier = 2.2
+
+[sub_resource type="PrismMesh" id="Mesh_CrystalLarge"]
+material = SubResource("Mat_CyanCrystal")
+size = Vector3(1.4, 3.8, 1.4)
+
+[sub_resource type="StandardMaterial3D" id="Mat_AmethystCrystal"]
+albedo_color = Color(0.78, 0.25, 0.95, 1)
+roughness = 0.15
+emission_enabled = true
+emission = Color(0.75, 0.2, 0.95, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="PrismMesh" id="Mesh_CrystalPurple"]
+material = SubResource("Mat_AmethystCrystal")
+size = Vector3(1.2, 3.0, 1.2)
+
+[sub_resource type="StandardMaterial3D" id="Mat_MineWood"]
+albedo_color = Color(0.32, 0.22, 0.15, 1)
+roughness = 0.8
+
+[sub_resource type="BoxMesh" id="Mesh_MineSupport"]
+material = SubResource("Mat_MineWood")
+size = Vector3(0.5, 6.0, 0.5)
+
+[sub_resource type="BoxMesh" id="Mesh_Elevator"]
+material = SubResource("Mat_MineWood")
+size = Vector3(6.5, 0.8, 6.5)
+
+[node name="Chapter7DarkUnderground" type="Node3D"]
+script = ExtResource("1_ch7")
+
+[node name="SplitScreenManager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_split")
+
+[node name="SplitContainer" type="BoxContainer" parent="SplitScreenManager"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ViewportContainer1" type="SubViewportContainer" parent="SplitScreenManager/SplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport1" type="SubViewport" parent="SplitScreenManager/SplitContainer/ViewportContainer1"]
+handle_input_locally = false
+size = Vector2i(958, 1080)
+render_target_update_mode = 4
+
+[node name="ViewportContainer2" type="SubViewportContainer" parent="SplitScreenManager/SplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport2" type="SubViewport" parent="SplitScreenManager/SplitContainer/ViewportContainer2"]
+handle_input_locally = false
+size = Vector2i(958, 1080)
+render_target_update_mode = 4
+
+[node name="DividerBar" type="ColorRect" parent="SplitScreenManager"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.9, 0.4, 0.9)
+
+[node name="HUD" parent="." instance=ExtResource("3_hud")]
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Env_C")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(0.866025, -0.25, 0.433013, 0, 0.866025, 0.5, -0.5, -0.433013, 0.75, 0, 15, 0)
+light_color = Color(0.42, 0.58, 0.88, 1)
+light_energy = 0.75
+shadow_enabled = true
+shadow_blur = 1.8
+
+[node name="Ground" type="StaticBody3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+collision_layer = 1
+collision_mask = 31
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Ground"]
+mesh = SubResource("Mesh_Floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Ground"]
+shape = SubResource("Shape_Floor")
+
+[node name="CrystalGeodes" type="Node3D" parent="World"]
+
+[node name="Crystal1" type="MeshInstance3D" parent="World/CrystalGeodes"]
+transform = Transform3D(0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0, 1, -12, 1.8, 8)
+mesh = SubResource("Mesh_CrystalLarge")
+
+[node name="CrystalLight1" type="OmniLight3D" parent="World/CrystalGeodes/Crystal1"]
+light_color = Color(0.15, 0.88, 0.95, 1)
+light_energy = 2.2
+omni_range = 8.0
+
+[node name="Crystal2" type="MeshInstance3D" parent="World/CrystalGeodes"]
+transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, 14, 1.4, -4)
+mesh = SubResource("Mesh_CrystalPurple")
+
+[node name="CrystalLight2" type="OmniLight3D" parent="World/CrystalGeodes/Crystal2"]
+light_color = Color(0.78, 0.25, 0.95, 1)
+light_energy = 2.0
+omni_range = 7.5
+
+[node name="Crystal3" type="MeshInstance3D" parent="World/CrystalGeodes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.5, -20)
+mesh = SubResource("Mesh_CrystalLarge")
+
+[node name="CrystalLight3" type="OmniLight3D" parent="World/CrystalGeodes/Crystal3"]
+light_color = Color(0.15, 0.88, 0.95, 1)
+light_energy = 2.4
+omni_range = 8.5
+
+[node name="OreElevator" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -30)
+
+[node name="Mesh" type="MeshInstance3D" parent="World/OreElevator"]
+mesh = SubResource("Mesh_Elevator")
+
+[node name="Checkpoints" type="Node3D" parent="World"]
+
+[node name="CP1" type="Area3D" parent="World/Checkpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 15)
+script = ExtResource("8_cp")
+checkpoint_id = "ch7_cp1_entrance"
+
+[node name="CP2" type="Area3D" parent="World/Checkpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2)
+script = ExtResource("8_cp")
+checkpoint_id = "ch7_cp2_minecart"
+
+[node name="CP3" type="Area3D" parent="World/Checkpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -10)
+script = ExtResource("8_cp")
+checkpoint_id = "ch7_cp3_mushrooms"
+
+[node name="CP4" type="Area3D" parent="World/Checkpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -20)
+script = ExtResource("8_cp")
+checkpoint_id = "ch7_cp4_mole_lair"
+
+[node name="Characters" type="Node3D" parent="World"]
+
+[node name="Bruno" parent="World/Characters" instance=ExtResource("4_bruno")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.2, 18)
+
+[node name="Milo" parent="World/Characters" instance=ExtResource("5_milo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.2, 18)
+
+[node name="BossMoleKing" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, -18)
+script = ExtResource("6_mole")
+
+[node name="GoldenBones" type="Node3D" parent="World"]
+
+[node name="Bone1" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 16)
+bone_id = "bone_ch7_01"
+
+[node name="Bone2" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1.8, 10)
+bone_id = "bone_ch7_02"
+
+[node name="Bone3" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.2, 5)
+bone_id = "bone_ch7_03"
+
+[node name="Bone4" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 2.0, -4)
+bone_id = "bone_ch7_04"
+
+[node name="Bone5" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2.2, -12)
+bone_id = "bone_ch7_05"
+
+[node name="Bone6" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.2, -18)
+bone_id = "bone_ch7_06"
+
+[node name="Bone7" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1.5, -24)
+bone_id = "bone_ch7_07"
+
+[node name="Bone8" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -30)
+bone_id = "bone_ch7_08"

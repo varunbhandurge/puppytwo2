@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbeacon001"]
+
+[ext_resource type="Script" path="res://src/ui/objective_beacon.gd" id="1_beacon"]
+
+[sub_resource type="StandardMaterial3D" id="Mat_BeaconGold"]
+albedo_color = Color(1, 0.82, 0.2, 1)
+metallic = 0.8
+roughness = 0.2
+emission_enabled = true
+emission = Color(1, 0.72, 0.15, 1)
+emission_energy_multiplier = 1.2
+
+[sub_resource type="PrismMesh" id="PrismMesh_up"]
+material = SubResource("Mat_BeaconGold")
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="PrismMesh" id="PrismMesh_down"]
+material = SubResource("Mat_BeaconGold")
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="CylinderMesh" id="CylMesh_pulse_ring"]
+material = SubResource("Mat_BeaconGold")
+top_radius = 1.2
+bottom_radius = 1.2
+height = 0.04
+
+[node name="ObjectiveBeacon" type="Node3D"]
+script = ExtResource("1_beacon")
+
+[node name="Diamond" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="UpperHalf" type="MeshInstance3D" parent="Diamond"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("PrismMesh_up")
+
+[node name="LowerHalf" type="MeshInstance3D" parent="Diamond"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, -0.25, 0)
+mesh = SubResource("PrismMesh_down")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+light_color = Color(1, 0.85, 0.35, 1)
+light_energy = 2.0
+omni_range = 6.0
+
+[node name="GroundRing" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("CylMesh_pulse_ring")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7, 0)
+billboard = 1
+modulate = Color(1, 0.94, 0.55, 1)
+outline_modulate = Color(0.1, 0.1, 0.12, 0.9)
+text = "▼ ACTIVE OBJECTIVE ▼
+Bruno: Dig the Sandbox Trench"
+font_size = 28
+outline_size = 8

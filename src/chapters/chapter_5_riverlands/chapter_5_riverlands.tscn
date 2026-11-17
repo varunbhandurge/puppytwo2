@@ -1,0 +1,277 @@
+[gd_scene load_steps=32 format=3 uid="uid://cch5river001"]
+
+[ext_resource type="Script" path="res://src/chapters/chapter_5_riverlands/chapter_5_riverlands.gd" id="1_ch5"]
+[ext_resource type="Script" path="res://src/camera/split_screen_manager.gd" id="2_split"]
+[ext_resource type="PackedScene" path="res://src/ui/hud.tscn" id="3_hud"]
+[ext_resource type="PackedScene" path="res://src/characters/bruno.tscn" id="4_bruno"]
+[ext_resource type="PackedScene" path="res://src/characters/milo.tscn" id="5_milo"]
+[ext_resource type="Script" path="res://src/enemies/boss_river_bullfrog.gd" id="6_frog"]
+[ext_resource type="PackedScene" path="res://src/interactables/golden_bone_pickup.tscn" id="7_bone_scene"]
+[ext_resource type="Script" path="res://src/interactables/checkpoint.gd" id="8_cp"]
+[ext_resource type="Shader" path="res://src/shaders/stylized_water.gdshader" id="9_water_shader"]
+
+[sub_resource type="ProceduralSkyMaterial" id="Sky_River"]
+sky_top_color = Color(0.22, 0.58, 0.92, 1)
+sky_horizon_color = Color(0.85, 0.92, 0.96, 1)
+ground_bottom_color = Color(0.15, 0.28, 0.22, 1)
+
+[sub_resource type="Sky" id="Sky_R"]
+sky_material = SubResource("Sky_River")
+
+[sub_resource type="Environment" id="Env_R"]
+background_mode = 2
+sky = SubResource("Sky_R")
+ambient_light_source = 3
+ambient_light_color = Color(0.82, 0.94, 0.98, 1)
+ambient_light_energy = 0.6
+tonemap_mode = 3
+tonemap_exposure = 1.15
+ssao_enabled = true
+ssao_radius = 1.8
+ssao_intensity = 3.0
+ssil_enabled = true
+ssil_radius = 2.4
+ssil_intensity = 1.2
+glow_enabled = true
+glow_intensity = 0.35
+glow_bloom = 0.15
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.016
+volumetric_fog_albedo = Color(0.92, 0.98, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="Mat_StylizedRiver"]
+render_priority = 0
+shader = ExtResource("9_water_shader")
+shader_parameter/shallow_color = Color(0.25, 0.72, 0.88, 1)
+shader_parameter/deep_color = Color(0.08, 0.32, 0.58, 1)
+shader_parameter/foam_color = Color(0.96, 0.98, 1, 1)
+shader_parameter/wave_speed = 1.4
+shader_parameter/wave_height = 0.18
+shader_parameter/water_roughness = 0.08
+
+[sub_resource type="BoxMesh" id="Mesh_Water"]
+material = SubResource("Mat_StylizedRiver")
+size = Vector3(80, 0.8, 80)
+
+[sub_resource type="BoxShape3D" id="Shape_Water"]
+size = Vector3(80, 0.8, 80)
+
+[sub_resource type="StandardMaterial3D" id="Mat_RiverRock"]
+albedo_color = Color(0.48, 0.52, 0.55, 1)
+roughness = 0.35
+
+[sub_resource type="SphereMesh" id="Mesh_RiverBoulder"]
+material = SubResource("Mat_RiverRock")
+radius = 2.2
+height = 3.2
+
+[sub_resource type="StandardMaterial3D" id="Mat_LilyPad"]
+albedo_color = Color(0.2, 0.62, 0.22, 1)
+roughness = 0.3
+
+[sub_resource type="CylinderMesh" id="Mesh_LilyPad"]
+material = SubResource("Mat_LilyPad")
+top_radius = 1.4
+bottom_radius = 1.4
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="Mat_Driftwood"]
+albedo_color = Color(0.42, 0.32, 0.22, 1)
+roughness = 0.8
+
+[sub_resource type="CylinderMesh" id="Mesh_DriftwoodLog"]
+material = SubResource("Mat_Driftwood")
+top_radius = 0.6
+bottom_radius = 0.7
+height = 8.0
+
+[sub_resource type="BoxMesh" id="Mesh_Dam"]
+material = SubResource("Mat_Driftwood")
+size = Vector3(18, 2.8, 4.5)
+
+[sub_resource type="BoxMesh" id="Mesh_Flume"]
+material = SubResource("Mat_Driftwood")
+size = Vector3(7, 4.5, 0.6)
+
+[node name="Chapter5Riverlands" type="Node3D"]
+script = ExtResource("1_ch5")
+
+[node name="SplitScreenManager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_split")
+
+[node name="SplitContainer" type="BoxContainer" parent="SplitScreenManager"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ViewportContainer1" type="SubViewportContainer" parent="SplitScreenManager/SplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport1" type="SubViewport" parent="SplitScreenManager/SplitContainer/ViewportContainer1"]
+handle_input_locally = false
+size = Vector2i(958, 1080)
+render_target_update_mode = 4
+
+[node name="ViewportContainer2" type="SubViewportContainer" parent="SplitScreenManager/SplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport2" type="SubViewport" parent="SplitScreenManager/SplitContainer/ViewportContainer2"]
+handle_input_locally = false
+size = Vector2i(958, 1080)
+render_target_update_mode = 4
+
+[node name="DividerBar" type="ColorRect" parent="SplitScreenManager"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.9, 0.4, 0.9)
+
+[node name="HUD" parent="." instance=ExtResource("3_hud")]
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Env_R")
+
+[node name="SunLight" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(0.866025, -0.353553, 0.353553, 0, 0.707107, 0.707107, -0.5, -0.612372, 0.612372, 0, 20, 0)
+light_color = Color(1, 0.96, 0.88, 1)
+light_energy = 1.6
+shadow_enabled = true
+shadow_blur = 1.6
+
+[node name="RiverBed" type="StaticBody3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+collision_layer = 1
+collision_mask = 31
+
+[node name="Mesh" type="MeshInstance3D" parent="World/RiverBed"]
+mesh = SubResource("Mesh_Water")
+
+[node name="Shape" type="CollisionShape3D" parent="World/RiverBed"]
+shape = SubResource("Shape_Water")
+
+[node name="RiverBoulders" type="Node3D" parent="World"]
+
+[node name="Boulder1" type="MeshInstance3D" parent="World/RiverBoulders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0.4, 8)
+mesh = SubResource("Mesh_RiverBoulder")
+
+[node name="Boulder2" type="MeshInstance3D" parent="World/RiverBoulders"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 16, 0.6, -4)
+mesh = SubResource("Mesh_RiverBoulder")
+
+[node name="Boulder3" type="MeshInstance3D" parent="World/RiverBoulders"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -10, 0.3, -16)
+mesh = SubResource("Mesh_RiverBoulder")
+
+[node name="LilyPads" type="Node3D" parent="World"]
+
+[node name="Pad1" type="MeshInstance3D" parent="World/LilyPads"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.05, 4)
+mesh = SubResource("Mesh_LilyPad")
+
+[node name="Pad2" type="MeshInstance3D" parent="World/LilyPads"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.05, -2)
+mesh = SubResource("Mesh_LilyPad")
+
+[node name="Pad3" type="MeshInstance3D" parent="World/LilyPads"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.05, -10)
+mesh = SubResource("Mesh_LilyPad")
+
+[node name="BeaverDam" type="StaticBody3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 6)
+
+[node name="Mesh" type="MeshInstance3D" parent="World/BeaverDam"]
+mesh = SubResource("Mesh_Dam")
+
+[node name="FlumeGate" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, -32)
+
+[node name="Mesh" type="MeshInstance3D" parent="World/FlumeGate"]
+mesh = SubResource("Mesh_Flume")
+
+[node name="Characters" type="Node3D" parent="World"]
+
+[node name="Bruno" parent="World/Characters" instance=ExtResource("4_bruno")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.2, 18)
+
+[node name="Milo" parent="World/Characters" instance=ExtResource("5_milo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.2, 18)
+
+[node name="BossRiverBullfrog" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, -18)
+script = ExtResource("6_frog")
+
+[node name="Checkpoints" type="Node3D" parent="World"]
+
+[node name="CheckpointRapidsEntry" type="Area3D" parent="World/Checkpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 16)
+script = ExtResource("8_cp")
+checkpoint_id = "cp_ch5_entry"
+
+[node name="CheckpointDam" type="Area3D" parent="World/Checkpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2)
+script = ExtResource("8_cp")
+checkpoint_id = "cp_ch5_dam"
+
+[node name="CheckpointFlume" type="Area3D" parent="World/Checkpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -28)
+script = ExtResource("8_cp")
+checkpoint_id = "cp_ch5_flume"
+
+[node name="GoldenBones" type="Node3D" parent="World"]
+
+[node name="Bone1" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 14)
+bone_id = "bone_ch5_01"
+
+[node name="Bone2" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 2.2, 6)
+bone_id = "bone_ch5_02"
+
+[node name="Bone3" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.2, 0)
+bone_id = "bone_ch5_03"
+
+[node name="Bone4" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.5, -8)
+bone_id = "bone_ch5_04"
+
+[node name="Bone5" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 2.8, -14)
+bone_id = "bone_ch5_05"
+
+[node name="Bone6" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 1.0, -20)
+bone_id = "bone_ch5_06"
+
+[node name="Bone7" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.5, -24)
+bone_id = "bone_ch5_07"
+
+[node name="Bone8" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -30)
+bone_id = "bone_ch5_08"

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="24" fill="#3D291D"/>
+  <circle cx="44" cy="56" r="28" fill="#F4C46A"/>
+  <circle cx="84" cy="62" r="24" fill="#C65D29"/>
+  <!-- Bruno Ears -->
+  <ellipse cx="24" cy="48" rx="10" ry="18" fill="#D4A042" transform="rotate(-15 24 48)"/>
+  <ellipse cx="60" cy="42" rx="9" ry="16" fill="#D4A042" transform="rotate(20 60 42)"/>
+  <!-- Milo Ears -->
+  <polygon points="76,38 88,14 96,38" fill="#FFFFFF"/>
+  <polygon points="78,36 88,18 94,36" fill="#F2994A"/>
+  <polygon points="96,44 114,24 116,50" fill="#FFFFFF"/>
+  <!-- Eyes -->
+  <circle cx="38" cy="54" r="5" fill="#2B2A29"/>
+  <circle cx="39" cy="52" r="2" fill="#FFFFFF"/>
+  <circle cx="52" cy="54" r="5" fill="#2B2A29"/>
+  <circle cx="53" cy="52" r="2" fill="#FFFFFF"/>
+  <circle cx="78" cy="60" r="4.5" fill="#2B2A29"/>
+  <circle cx="79" cy="58" r="1.8" fill="#FFFFFF"/>
+  <circle cx="92" cy="60" r="4.5" fill="#2B2A29"/>
+  <circle cx="93" cy="58" r="1.8" fill="#FFFFFF"/>
+  <!-- Noses -->
+  <ellipse cx="45" cy="65" rx="6" ry="4" fill="#2B2A29"/>
+  <ellipse cx="85" cy="70" rx="5" ry="3.5" fill="#2B2A29"/>
+  <!-- Bone -->
+  <path d="M50,96 C46,92 46,86 52,86 C56,86 58,88 64,91 C70,88 72,86 76,86 C82,86 82,92 78,96 C82,100 82,106 76,106 C72,106 70,104 64,101 C58,104 56,106 52,106 C46,106 46,100 50,96 Z" fill="#FFE8A3"/>
+</svg>

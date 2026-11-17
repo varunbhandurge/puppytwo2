@@ -1,0 +1,260 @@
+[gd_scene load_steps=24 format=3 uid="uid://cmilo002"]
+
+[ext_resource type="Script" path="res://src/characters/milo.gd" id="1_milo"]
+[ext_resource type="Shader" path="res://src/shaders/fur_rim_fluff.gdshader" id="2_fur_shader"]
+[ext_resource type="Shader" path="res://src/shaders/cartoon_eye.gdshader" id="3_eye_shader"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_milo"]
+radius = 0.2
+height = 0.52
+
+[sub_resource type="ShaderMaterial" id="Mat_CorgiRed"]
+render_priority = 0
+shader = ExtResource("2_fur_shader")
+shader_parameter/fur_base_color = Color(0.82, 0.42, 0.16, 1)
+shader_parameter/fur_rim_color = Color(0.94, 0.62, 0.32, 1)
+shader_parameter/shadow_tint = Color(0.48, 0.24, 0.1, 1)
+shader_parameter/rim_power = 2.8
+shader_parameter/rim_intensity = 0.3
+shader_parameter/fur_roughness = 0.82
+
+[sub_resource type="ShaderMaterial" id="Mat_WhiteCorgi"]
+render_priority = 0
+shader = ExtResource("2_fur_shader")
+shader_parameter/fur_base_color = Color(0.94, 0.94, 0.95, 1)
+shader_parameter/fur_rim_color = Color(0.98, 0.98, 1.0, 1)
+shader_parameter/shadow_tint = Color(0.72, 0.76, 0.82, 1)
+shader_parameter/rim_power = 2.6
+shader_parameter/rim_intensity = 0.22
+shader_parameter/fur_roughness = 0.8
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_body"]
+material = SubResource("Mat_CorgiRed")
+radius = 0.19
+height = 0.48
+
+[sub_resource type="SphereMesh" id="SphereMesh_chest"]
+material = SubResource("Mat_WhiteCorgi")
+radius = 0.17
+height = 0.28
+
+[sub_resource type="SphereMesh" id="SphereMesh_head"]
+material = SubResource("Mat_CorgiRed")
+radius = 0.19
+height = 0.38
+
+[sub_resource type="BoxMesh" id="BoxMesh_blaze"]
+material = SubResource("Mat_WhiteCorgi")
+size = Vector3(0.06, 0.18, 0.14)
+
+[sub_resource type="BoxMesh" id="BoxMesh_snout"]
+material = SubResource("Mat_WhiteCorgi")
+size = Vector3(0.14, 0.11, 0.16)
+
+[sub_resource type="StandardMaterial3D" id="Mat_DarkNose"]
+albedo_color = Color(0.1, 0.1, 0.1, 1)
+roughness = 0.2
+
+[sub_resource type="SphereMesh" id="SphereMesh_nose"]
+material = SubResource("Mat_DarkNose")
+radius = 0.045
+height = 0.08
+
+[sub_resource type="ShaderMaterial" id="Mat_Eye"]
+render_priority = 1
+shader = ExtResource("3_eye_shader")
+shader_parameter/sclera_color = Color(0.98, 0.98, 0.96, 1)
+shader_parameter/iris_outer_color = Color(0.25, 0.12, 0.04, 1)
+shader_parameter/iris_inner_color = Color(0.68, 0.38, 0.12, 1)
+shader_parameter/pupil_color = Color(0.03, 0.03, 0.04, 1)
+shader_parameter/iris_radius = 0.38
+shader_parameter/pupil_radius = 0.18
+shader_parameter/sparkle_pos = Vector2(0.09, -0.09)
+shader_parameter/sparkle_radius = 0.065
+
+[sub_resource type="QuadMesh" id="QuadMesh_eye"]
+material = SubResource("Mat_Eye")
+size = Vector2(0.095, 0.095)
+
+[sub_resource type="PrismMesh" id="PrismMesh_ear"]
+material = SubResource("Mat_CorgiRed")
+size = Vector3(0.13, 0.24, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="Mat_PinkInnerEar"]
+albedo_color = Color(0.95, 0.65, 0.72, 1)
+roughness = 0.6
+
+[sub_resource type="PrismMesh" id="PrismMesh_inner_ear"]
+material = SubResource("Mat_PinkInnerEar")
+size = Vector3(0.09, 0.18, 0.03)
+
+[sub_resource type="StandardMaterial3D" id="Mat_BlueCollar"]
+albedo_color = Color(0.18, 0.52, 0.9, 1)
+roughness = 0.35
+
+[sub_resource type="TorusMesh" id="TorusMesh_collar"]
+material = SubResource("Mat_BlueCollar")
+inner_radius = 0.14
+outer_radius = 0.19
+
+[sub_resource type="StandardMaterial3D" id="Mat_BrassTag"]
+albedo_color = Color(0.95, 0.8, 0.3, 1)
+metallic = 0.85
+roughness = 0.25
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tag"]
+material = SubResource("Mat_BrassTag")
+top_radius = 0.038
+bottom_radius = 0.038
+height = 0.012
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_leg"]
+material = SubResource("Mat_CorgiRed")
+radius = 0.055
+height = 0.2
+
+[sub_resource type="SphereMesh" id="SphereMesh_sock"]
+material = SubResource("Mat_WhiteCorgi")
+radius = 0.06
+height = 0.08
+
+[sub_resource type="SphereMesh" id="SphereMesh_bum"]
+material = SubResource("Mat_WhiteCorgi")
+radius = 0.11
+height = 0.16
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tail"]
+material = SubResource("Mat_WhiteCorgi")
+radius = 0.045
+height = 0.14
+
+[node name="Milo" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 29
+script = ExtResource("1_milo")
+player_id = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26, 0)
+shape = SubResource("CapsuleShape3D_milo")
+
+[node name="VisualRoot" type="Node3D" parent="."]
+
+[node name="Body" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.24, 0)
+mesh = SubResource("CapsuleMesh_body")
+
+[node name="ChestRuff" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26, -0.14)
+mesh = SubResource("SphereMesh_chest")
+
+[node name="PeachBum" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 0.22)
+mesh = SubResource("SphereMesh_bum")
+
+[node name="Collar" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0.28, -0.14)
+mesh = SubResource("TorusMesh_collar")
+
+[node name="CollarTag" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.18, -0.21)
+mesh = SubResource("CylinderMesh_tag")
+
+[node name="Head" type="Node3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36, -0.24)
+
+[node name="HeadMesh" type="MeshInstance3D" parent="VisualRoot/Head"]
+mesh = SubResource("SphereMesh_head")
+
+[node name="WhiteBlaze" type="MeshInstance3D" parent="VisualRoot/Head"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0.04, -0.12)
+mesh = SubResource("BoxMesh_blaze")
+
+[node name="Snout" type="MeshInstance3D" parent="VisualRoot/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04, -0.16)
+mesh = SubResource("BoxMesh_snout")
+
+[node name="Nose" type="MeshInstance3D" parent="VisualRoot/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, -0.23)
+mesh = SubResource("SphereMesh_nose")
+
+[node name="LeftEye" type="MeshInstance3D" parent="VisualRoot/Head"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -0.09, 0.05, -0.17)
+mesh = SubResource("QuadMesh_eye")
+
+[node name="RightEye" type="MeshInstance3D" parent="VisualRoot/Head"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0.09, 0.05, -0.17)
+mesh = SubResource("QuadMesh_eye")
+
+[node name="LeftEar" type="Node3D" parent="VisualRoot/Head"]
+transform = Transform3D(0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0, 1, -0.15, 0.14, -0.02)
+
+[node name="EarMesh" type="MeshInstance3D" parent="VisualRoot/Head/LeftEar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
+mesh = SubResource("PrismMesh_ear")
+
+[node name="InnerEar" type="MeshInstance3D" parent="VisualRoot/Head/LeftEar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07, -0.015)
+mesh = SubResource("PrismMesh_inner_ear")
+
+[node name="RightEar" type="Node3D" parent="VisualRoot/Head"]
+transform = Transform3D(0.939693, -0.34202, 0, 0.34202, 0.939693, 0, 0, 0, 1, 0.15, 0.14, -0.02)
+
+[node name="EarMesh" type="MeshInstance3D" parent="VisualRoot/Head/RightEar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
+mesh = SubResource("PrismMesh_ear")
+
+[node name="InnerEar" type="MeshInstance3D" parent="VisualRoot/Head/RightEar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07, -0.015)
+mesh = SubResource("PrismMesh_inner_ear")
+
+[node name="Tail" type="Node3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0.28, 0.22)
+
+[node name="TailMesh" type="MeshInstance3D" parent="VisualRoot/Tail"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0)
+mesh = SubResource("CapsuleMesh_tail")
+
+[node name="LegFL" type="Node3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12, 0.16, -0.14)
+
+[node name="Mesh" type="MeshInstance3D" parent="VisualRoot/LegFL"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06, 0)
+mesh = SubResource("CapsuleMesh_leg")
+
+[node name="Sock" type="MeshInstance3D" parent="VisualRoot/LegFL"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13, -0.01)
+mesh = SubResource("SphereMesh_sock")
+
+[node name="LegFR" type="Node3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12, 0.16, -0.14)
+
+[node name="Mesh" type="MeshInstance3D" parent="VisualRoot/LegFR"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06, 0)
+mesh = SubResource("CapsuleMesh_leg")
+
+[node name="Sock" type="MeshInstance3D" parent="VisualRoot/LegFR"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13, -0.01)
+mesh = SubResource("SphereMesh_sock")
+
+[node name="LegRL" type="Node3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12, 0.16, 0.15)
+
+[node name="Mesh" type="MeshInstance3D" parent="VisualRoot/LegRL"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06, 0)
+mesh = SubResource("CapsuleMesh_leg")
+
+[node name="Sock" type="MeshInstance3D" parent="VisualRoot/LegRL"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13, 0)
+mesh = SubResource("SphereMesh_sock")
+
+[node name="LegRR" type="Node3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12, 0.16, 0.15)
+
+[node name="Mesh" type="MeshInstance3D" parent="VisualRoot/LegRR"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06, 0)
+mesh = SubResource("CapsuleMesh_leg")
+
+[node name="Sock" type="MeshInstance3D" parent="VisualRoot/LegRR"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13, 0)
+mesh = SubResource("SphereMesh_sock")

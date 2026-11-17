@@ -1,0 +1,315 @@
+[gd_scene load_steps=29 format=3 uid="uid://cch8mtn001"]
+
+[ext_resource type="Script" path="res://src/chapters/chapter_8_mountain_of_bones/chapter_8_mountain_of_bones.gd" id="1_ch8"]
+[ext_resource type="Script" path="res://src/camera/split_screen_manager.gd" id="2_split"]
+[ext_resource type="PackedScene" path="res://src/ui/hud.tscn" id="3_hud"]
+[ext_resource type="PackedScene" path="res://src/characters/bruno.tscn" id="4_bruno"]
+[ext_resource type="PackedScene" path="res://src/characters/milo.tscn" id="5_milo"]
+[ext_resource type="Script" path="res://src/enemies/boss_mountain_guardian.gd" id="6_guardian"]
+[ext_resource type="PackedScene" path="res://src/interactables/golden_bone_pickup.tscn" id="7_bone_scene"]
+[ext_resource type="Script" path="res://src/interactables/checkpoint.gd" id="8_cp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="Sky_Mountain"]
+sky_top_color = Color(0.12, 0.1, 0.28, 1)
+sky_horizon_color = Color(0.35, 0.6, 0.8, 1)
+ground_bottom_color = Color(0.15, 0.18, 0.25, 1)
+ground_horizon_color = Color(0.4, 0.5, 0.65, 1)
+sun_angle_max = 25.0
+
+[sub_resource type="Sky" id="Sky_M"]
+sky_material = SubResource("Sky_Mountain")
+
+[sub_resource type="Environment" id="Env_M"]
+background_mode = 2
+sky = SubResource("Sky_M")
+ambient_light_source = 3
+ambient_light_color = Color(0.7, 0.8, 0.95, 1)
+ambient_light_energy = 0.85
+tonemap_mode = 2
+ssao_enabled = true
+ssil_enabled = true
+glow_enabled = true
+glow_intensity = 0.4
+glow_bloom = 0.2
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.012
+volumetric_fog_albedo = Color(0.85, 0.9, 1.0, 1)
+volumetric_fog_emission = Color(0.1, 0.15, 0.25, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_SnowFloor"]
+albedo_color = Color(0.92, 0.95, 0.98, 1)
+roughness = 0.45
+
+[sub_resource type="BoxMesh" id="Mesh_Floor"]
+material = SubResource("Mat_SnowFloor")
+size = Vector3(85, 1, 85)
+
+[sub_resource type="BoxShape3D" id="Shape_Floor"]
+size = Vector3(85, 1, 85)
+
+[sub_resource type="StandardMaterial3D" id="Mat_CliffRock"]
+albedo_color = Color(0.28, 0.3, 0.35, 1)
+roughness = 0.85
+
+[sub_resource type="BoxMesh" id="Mesh_CliffWall"]
+material = SubResource("Mat_CliffRock")
+size = Vector3(8, 16, 75)
+
+[sub_resource type="StandardMaterial3D" id="Mat_GlacialIce"]
+albedo_color = Color(0.45, 0.82, 0.95, 0.8)
+roughness = 0.15
+emission_enabled = true
+emission = Color(0.2, 0.55, 0.85, 1)
+emission_energy_multiplier = 0.5
+
+[sub_resource type="BoxMesh" id="Mesh_IceBridge"]
+material = SubResource("Mat_GlacialIce")
+size = Vector3(10, 0.8, 16)
+
+[sub_resource type="StandardMaterial3D" id="Mat_GuardianStone"]
+albedo_color = Color(0.38, 0.4, 0.46, 1)
+roughness = 0.7
+
+[sub_resource type="CylinderMesh" id="Mesh_GuardianPillar"]
+material = SubResource("Mat_GuardianStone")
+top_radius = 1.0
+bottom_radius = 1.4
+height = 9.0
+
+[sub_resource type="StandardMaterial3D" id="Mat_AltarGold"]
+albedo_color = Color(0.9, 0.78, 0.32, 1)
+metallic = 0.75
+roughness = 0.28
+emission_enabled = true
+emission = Color(0.85, 0.7, 0.2, 1)
+emission_energy_multiplier = 0.3
+
+[sub_resource type="BoxMesh" id="Mesh_Gate"]
+material = SubResource("Mat_AltarGold")
+size = Vector3(7, 5, 0.6)
+
+[sub_resource type="CylinderMesh" id="Mesh_AltarDais"]
+material = SubResource("Mat_GuardianStone")
+top_radius = 7.0
+bottom_radius = 8.5
+height = 1.2
+
+[sub_resource type="StandardMaterial3D" id="Mat_BrazierFire"]
+albedo_color = Color(1.0, 0.6, 0.15, 1)
+emission_enabled = true
+emission = Color(1.0, 0.5, 0.05, 1)
+emission_energy_multiplier = 2.5
+
+[sub_resource type="SphereMesh" id="Mesh_BrazierFlame"]
+material = SubResource("Mat_BrazierFire")
+radius = 0.4
+height = 0.8
+
+[sub_resource type="StandardMaterial3D" id="Mat_Statue"]
+albedo_color = Color(0.32, 0.34, 0.4, 1)
+roughness = 0.75
+
+[sub_resource type="BoxMesh" id="Mesh_StatueBody"]
+material = SubResource("Mat_Statue")
+size = Vector3(2.5, 4.5, 3.5)
+
+[node name="Chapter8MountainOfBones" type="Node3D"]
+script = ExtResource("1_ch8")
+
+[node name="SplitScreenManager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_split")
+
+[node name="SplitContainer" type="BoxContainer" parent="SplitScreenManager"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ViewportContainer1" type="SubViewportContainer" parent="SplitScreenManager/SplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport1" type="SubViewport" parent="SplitScreenManager/SplitContainer/ViewportContainer1"]
+handle_input_locally = false
+size = Vector2i(958, 1080)
+render_target_update_mode = 4
+
+[node name="ViewportContainer2" type="SubViewportContainer" parent="SplitScreenManager/SplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport2" type="SubViewport" parent="SplitScreenManager/SplitContainer/ViewportContainer2"]
+handle_input_locally = false
+size = Vector2i(958, 1080)
+render_target_update_mode = 4
+
+[node name="HUD" parent="." instance=ExtResource("3_hud")]
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(0.866025, -0.353553, 0.353553, 0, 0.707107, 0.707107, -0.5, -0.612372, 0.612372, 0, 25, 0)
+light_color = Color(0.88, 0.94, 1.0, 1)
+light_energy = 1.2
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Env_M")
+
+[node name="Ground" type="StaticBody3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Ground"]
+mesh = SubResource("Mesh_Floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Ground"]
+shape = SubResource("Shape_Floor")
+
+[node name="MountainCrags" type="Node3D" parent="World"]
+
+[node name="CliffWest" type="MeshInstance3D" parent="World/MountainCrags"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 7.5, 0)
+mesh = SubResource("Mesh_CliffWall")
+
+[node name="CliffEast" type="MeshInstance3D" parent="World/MountainCrags"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 7.5, 0)
+mesh = SubResource("Mesh_CliffWall")
+
+[node name="IceBridge" type="MeshInstance3D" parent="World/MountainCrags"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -2)
+mesh = SubResource("Mesh_IceBridge")
+
+[node name="AncientHoundStatues" type="Node3D" parent="World"]
+
+[node name="StatueProwlerL" type="MeshInstance3D" parent="World/AncientHoundStatues"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -14, 2.2, 8)
+mesh = SubResource("Mesh_StatueBody")
+
+[node name="StatueProwlerR" type="MeshInstance3D" parent="World/AncientHoundStatues"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 14, 2.2, 8)
+mesh = SubResource("Mesh_StatueBody")
+
+[node name="StatueNobleL" type="MeshInstance3D" parent="World/AncientHoundStatues"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -16, 2.2, -16)
+mesh = SubResource("Mesh_StatueBody")
+
+[node name="StatueNobleR" type="MeshInstance3D" parent="World/AncientHoundStatues"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 16, 2.2, -16)
+mesh = SubResource("Mesh_StatueBody")
+
+[node name="SummitAltarDais" type="MeshInstance3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -28)
+mesh = SubResource("Mesh_AltarDais")
+
+[node name="SanctuaryGate" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -32)
+
+[node name="Mesh" type="MeshInstance3D" parent="World/SanctuaryGate"]
+mesh = SubResource("Mesh_Gate")
+
+[node name="PillarLeft" type="MeshInstance3D" parent="World/SanctuaryGate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 2.0, 0)
+mesh = SubResource("Mesh_GuardianPillar")
+
+[node name="PillarRight" type="MeshInstance3D" parent="World/SanctuaryGate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 2.0, 0)
+mesh = SubResource("Mesh_GuardianPillar")
+
+[node name="BrazierLeft" type="MeshInstance3D" parent="World/SanctuaryGate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.5, 3)
+mesh = SubResource("Mesh_BrazierFlame")
+
+[node name="FlameLightL" type="OmniLight3D" parent="World/SanctuaryGate/BrazierLeft"]
+light_color = Color(1, 0.65, 0.25, 1)
+light_energy = 2.5
+omni_range = 10.0
+
+[node name="BrazierRight" type="MeshInstance3D" parent="World/SanctuaryGate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.5, 3)
+mesh = SubResource("Mesh_BrazierFlame")
+
+[node name="FlameLightR" type="OmniLight3D" parent="World/SanctuaryGate/BrazierRight"]
+light_color = Color(1, 0.65, 0.25, 1)
+light_energy = 2.5
+omni_range = 10.0
+
+[node name="Checkpoints" type="Node3D" parent="World"]
+
+[node name="CP1" type="Area3D" parent="World/Checkpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 16)
+script = ExtResource("8_cp")
+checkpoint_id = "ch8_cp1_blizzard_ridge"
+
+[node name="CP2" type="Area3D" parent="World/Checkpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 4)
+script = ExtResource("8_cp")
+checkpoint_id = "ch8_cp2_chasm_glider"
+
+[node name="CP3" type="Area3D" parent="World/Checkpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -8)
+script = ExtResource("8_cp")
+checkpoint_id = "ch8_cp3_ancestor_gate"
+
+[node name="CP4" type="Area3D" parent="World/Checkpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -20)
+script = ExtResource("8_cp")
+checkpoint_id = "ch8_cp4_summit_shrine"
+
+[node name="Characters" type="Node3D" parent="World"]
+
+[node name="Bruno" parent="World/Characters" instance=ExtResource("4_bruno")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.2, 20)
+
+[node name="Milo" parent="World/Characters" instance=ExtResource("5_milo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.2, 20)
+
+[node name="BossMountainGuardian" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, -22)
+script = ExtResource("6_guardian")
+
+[node name="GoldenBones" type="Node3D" parent="World"]
+
+[node name="Bone1" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 18)
+bone_id = "bone_ch8_01"
+
+[node name="Bone2" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.8, 12)
+bone_id = "bone_ch8_02"
+
+[node name="Bone3" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.4, 6)
+bone_id = "bone_ch8_03"
+
+[node name="Bone4" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2.2, -4)
+bone_id = "bone_ch8_04"
+
+[node name="Bone5" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 2.5, -12)
+bone_id = "bone_ch8_05"
+
+[node name="Bone6" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 1.2, -18)
+bone_id = "bone_ch8_06"
+
+[node name="Bone7" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.6, -26)
+bone_id = "bone_ch8_07"
+
+[node name="Bone8" parent="World/GoldenBones" instance=ExtResource("7_bone_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -34)
+bone_id = "bone_ch8_08"

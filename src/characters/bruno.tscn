@@ -1,0 +1,252 @@
+[gd_scene load_steps=24 format=3 uid="uid://cbruno001"]
+
+[ext_resource type="Script" path="res://src/characters/bruno.gd" id="1_bruno"]
+[ext_resource type="Shader" path="res://src/shaders/fur_rim_fluff.gdshader" id="2_fur_shader"]
+[ext_resource type="Shader" path="res://src/shaders/cartoon_eye.gdshader" id="3_eye_shader"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bruno"]
+radius = 0.26
+height = 0.65
+
+[sub_resource type="ShaderMaterial" id="Mat_GoldenFur"]
+render_priority = 0
+shader = ExtResource("2_fur_shader")
+shader_parameter/fur_base_color = Color(0.88, 0.62, 0.28, 1)
+shader_parameter/fur_rim_color = Color(0.96, 0.78, 0.48, 1)
+shader_parameter/shadow_tint = Color(0.5, 0.32, 0.15, 1)
+shader_parameter/rim_power = 3.0
+shader_parameter/rim_intensity = 0.3
+shader_parameter/fur_roughness = 0.85
+
+[sub_resource type="ShaderMaterial" id="Mat_CreamFur"]
+render_priority = 0
+shader = ExtResource("2_fur_shader")
+shader_parameter/fur_base_color = Color(0.94, 0.84, 0.65, 1)
+shader_parameter/fur_rim_color = Color(0.98, 0.92, 0.78, 1)
+shader_parameter/shadow_tint = Color(0.6, 0.45, 0.3, 1)
+shader_parameter/rim_power = 2.8
+shader_parameter/rim_intensity = 0.25
+shader_parameter/fur_roughness = 0.82
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_body"]
+material = SubResource("Mat_GoldenFur")
+radius = 0.23
+height = 0.56
+
+[sub_resource type="SphereMesh" id="SphereMesh_chest"]
+material = SubResource("Mat_CreamFur")
+radius = 0.2
+height = 0.32
+
+[sub_resource type="SphereMesh" id="SphereMesh_head"]
+material = SubResource("Mat_GoldenFur")
+radius = 0.23
+height = 0.44
+
+[sub_resource type="SphereMesh" id="SphereMesh_cheek"]
+material = SubResource("Mat_CreamFur")
+radius = 0.11
+height = 0.18
+
+[sub_resource type="BoxMesh" id="BoxMesh_snout"]
+material = SubResource("Mat_CreamFur")
+size = Vector3(0.18, 0.14, 0.18)
+
+[sub_resource type="StandardMaterial3D" id="Mat_LeatherNose"]
+albedo_color = Color(0.12, 0.11, 0.11, 1)
+roughness = 0.25
+
+[sub_resource type="SphereMesh" id="SphereMesh_nose"]
+material = SubResource("Mat_LeatherNose")
+radius = 0.055
+height = 0.09
+
+[sub_resource type="StandardMaterial3D" id="Mat_PinkTongue"]
+albedo_color = Color(0.96, 0.45, 0.55, 1)
+roughness = 0.3
+
+[sub_resource type="BoxMesh" id="BoxMesh_tongue"]
+material = SubResource("Mat_PinkTongue")
+size = Vector3(0.08, 0.025, 0.08)
+
+[sub_resource type="ShaderMaterial" id="Mat_Eye"]
+render_priority = 1
+shader = ExtResource("3_eye_shader")
+shader_parameter/sclera_color = Color(0.98, 0.98, 0.96, 1)
+shader_parameter/iris_outer_color = Color(0.35, 0.18, 0.06, 1)
+shader_parameter/iris_inner_color = Color(0.78, 0.48, 0.18, 1)
+shader_parameter/pupil_color = Color(0.04, 0.04, 0.05, 1)
+shader_parameter/iris_radius = 0.38
+shader_parameter/pupil_radius = 0.19
+shader_parameter/sparkle_pos = Vector2(0.09, -0.09)
+shader_parameter/sparkle_radius = 0.065
+
+[sub_resource type="QuadMesh" id="QuadMesh_eye"]
+material = SubResource("Mat_Eye")
+size = Vector2(0.11, 0.11)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ear"]
+material = SubResource("Mat_GoldenFur")
+radius = 0.075
+height = 0.28
+
+[sub_resource type="StandardMaterial3D" id="Mat_RedCollar"]
+albedo_color = Color(0.88, 0.18, 0.18, 1)
+roughness = 0.35
+
+[sub_resource type="TorusMesh" id="TorusMesh_collar"]
+material = SubResource("Mat_RedCollar")
+inner_radius = 0.16
+outer_radius = 0.22
+
+[sub_resource type="StandardMaterial3D" id="Mat_GoldTag"]
+albedo_color = Color(1, 0.85, 0.25, 1)
+metallic = 0.9
+roughness = 0.2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tag"]
+material = SubResource("Mat_GoldTag")
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.015
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_paw"]
+material = SubResource("Mat_GoldenFur")
+radius = 0.07
+height = 0.26
+
+[sub_resource type="SphereMesh" id="SphereMesh_paw_pad"]
+material = SubResource("Mat_LeatherNose")
+radius = 0.065
+height = 0.06
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tail"]
+material = SubResource("Mat_GoldenFur")
+radius = 0.06
+height = 0.32
+
+[node name="Bruno" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 29
+script = ExtResource("1_bruno")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32, 0)
+shape = SubResource("CapsuleShape3D_bruno")
+
+[node name="VisualRoot" type="Node3D" parent="."]
+
+[node name="Body" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.3, 0)
+mesh = SubResource("CapsuleMesh_body")
+
+[node name="ChestRuff" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32, -0.16)
+mesh = SubResource("SphereMesh_chest")
+
+[node name="Collar" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0.35, -0.16)
+mesh = SubResource("TorusMesh_collar")
+
+[node name="CollarTag" type="MeshInstance3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.24, -0.25)
+mesh = SubResource("CylinderMesh_tag")
+
+[node name="Head" type="Node3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44, -0.28)
+
+[node name="HeadMesh" type="MeshInstance3D" parent="VisualRoot/Head"]
+mesh = SubResource("SphereMesh_head")
+
+[node name="LeftCheek" type="MeshInstance3D" parent="VisualRoot/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14, -0.06, -0.06)
+mesh = SubResource("SphereMesh_cheek")
+
+[node name="RightCheek" type="MeshInstance3D" parent="VisualRoot/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14, -0.06, -0.06)
+mesh = SubResource("SphereMesh_cheek")
+
+[node name="Snout" type="MeshInstance3D" parent="VisualRoot/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04, -0.2)
+mesh = SubResource("BoxMesh_snout")
+
+[node name="Nose" type="MeshInstance3D" parent="VisualRoot/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, -0.28)
+mesh = SubResource("SphereMesh_nose")
+
+[node name="Tongue" type="MeshInstance3D" parent="VisualRoot/Head"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, -0.09, -0.24)
+mesh = SubResource("BoxMesh_tongue")
+
+[node name="LeftEye" type="MeshInstance3D" parent="VisualRoot/Head"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -0.1, 0.06, -0.21)
+mesh = SubResource("QuadMesh_eye")
+
+[node name="RightEye" type="MeshInstance3D" parent="VisualRoot/Head"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0.1, 0.06, -0.21)
+mesh = SubResource("QuadMesh_eye")
+
+[node name="LeftEar" type="Node3D" parent="VisualRoot/Head"]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -0.18, 0.08, 0.02)
+
+[node name="EarMesh" type="MeshInstance3D" parent="VisualRoot/Head/LeftEar"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, -0.1, 0.02)
+mesh = SubResource("CapsuleMesh_ear")
+
+[node name="RightEar" type="Node3D" parent="VisualRoot/Head"]
+transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, 0.18, 0.08, 0.02)
+
+[node name="EarMesh" type="MeshInstance3D" parent="VisualRoot/Head/RightEar"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, -0.1, 0.02)
+mesh = SubResource("CapsuleMesh_ear")
+
+[node name="Tail" type="Node3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0.36, 0.26)
+
+[node name="TailMesh" type="MeshInstance3D" parent="VisualRoot/Tail"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14, 0)
+mesh = SubResource("CapsuleMesh_tail")
+
+[node name="LegFL" type="Node3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14, 0.2, -0.16)
+
+[node name="Mesh" type="MeshInstance3D" parent="VisualRoot/LegFL"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08, 0)
+mesh = SubResource("CapsuleMesh_paw")
+
+[node name="PawPad" type="MeshInstance3D" parent="VisualRoot/LegFL"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19, -0.02)
+mesh = SubResource("SphereMesh_paw_pad")
+
+[node name="LegFR" type="Node3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14, 0.2, -0.16)
+
+[node name="Mesh" type="MeshInstance3D" parent="VisualRoot/LegFR"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08, 0)
+mesh = SubResource("CapsuleMesh_paw")
+
+[node name="PawPad" type="MeshInstance3D" parent="VisualRoot/LegFR"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19, -0.02)
+mesh = SubResource("SphereMesh_paw_pad")
+
+[node name="LegRL" type="Node3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14, 0.2, 0.18)
+
+[node name="Mesh" type="MeshInstance3D" parent="VisualRoot/LegRL"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08, 0)
+mesh = SubResource("CapsuleMesh_paw")
+
+[node name="PawPad" type="MeshInstance3D" parent="VisualRoot/LegRL"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19, 0)
+mesh = SubResource("SphereMesh_paw_pad")
+
+[node name="LegRR" type="Node3D" parent="VisualRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14, 0.2, 0.18)
+
+[node name="Mesh" type="MeshInstance3D" parent="VisualRoot/LegRR"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08, 0)
+mesh = SubResource("CapsuleMesh_paw")
+
+[node name="PawPad" type="MeshInstance3D" parent="VisualRoot/LegRR"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19, 0)
+mesh = SubResource("SphereMesh_paw_pad")

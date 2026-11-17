@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=3 uid="uid://cgoldenbone001"]
+
+[ext_resource type="Script" path="res://src/interactables/golden_bone_pickup.gd" id="1_bone"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bone"]
+radius = 0.65
+
+[sub_resource type="StandardMaterial3D" id="Mat_GoldenBone"]
+albedo_color = Color(1, 0.86, 0.24, 1)
+metallic = 0.85
+roughness = 0.22
+emission_enabled = true
+emission = Color(0.95, 0.72, 0.12, 1)
+emission_energy_multiplier = 0.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_shaft"]
+material = SubResource("Mat_GoldenBone")
+top_radius = 0.075
+bottom_radius = 0.075
+height = 0.45
+
+[sub_resource type="SphereMesh" id="SphereMesh_lobe"]
+material = SubResource("Mat_GoldenBone")
+radius = 0.095
+height = 0.19
+
+[sub_resource type="StandardMaterial3D" id="Mat_Sparkle"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+albedo_color = Color(1, 0.94, 0.55, 0.85)
+
+[sub_resource type="QuadMesh" id="QuadMesh_sparkle"]
+material = SubResource("Mat_Sparkle")
+size = Vector2(0.12, 0.12)
+
+[node name="GoldenBonePickup" type="Area3D"]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_bone")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_bone")
+
+[node name="BoneMesh" type="Node3D" parent="."]
+
+[node name="Shaft" type="MeshInstance3D" parent="BoneMesh"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_shaft")
+
+[node name="LeftLobe1" type="MeshInstance3D" parent="BoneMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23, 0.07, 0)
+mesh = SubResource("SphereMesh_lobe")
+
+[node name="LeftLobe2" type="MeshInstance3D" parent="BoneMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23, -0.07, 0)
+mesh = SubResource("SphereMesh_lobe")
+
+[node name="RightLobe1" type="MeshInstance3D" parent="BoneMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23, 0.07, 0)
+mesh = SubResource("SphereMesh_lobe")
+
+[node name="RightLobe2" type="MeshInstance3D" parent="BoneMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23, -0.07, 0)
+mesh = SubResource("SphereMesh_lobe")
+
+[node name="GlowLight" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.88, 0.45, 1)
+light_energy = 1.4
+omni_range = 3.5
+omni_attenuation = 1.2
+
+[node name="SparkleParticles" type="CPUParticles3D" parent="."]
+amount = 12
+lifetime = 1.4
+mesh = SubResource("QuadMesh_sparkle")
+emission_shape = 1
+emission_sphere_radius = 0.45
+gravity = Vector3(0, 0.15, 0)
+scale_amount_min = 0.6
+scale_amount_max = 1.4
+color = Color(1, 0.92, 0.4, 0.9)

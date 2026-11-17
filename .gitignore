@@ -1,0 +1,9 @@
+# Godot 4 standard gitignore
+.godot/
+*.translation
+user://
+*.tmp
+*.log
+dist/
+*.pck
+*.zip
