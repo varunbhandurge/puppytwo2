@@ -47,20 +47,31 @@ func _ready() -> void:
 	dialogue_manager = DialogueManager.new()
 	add_child(dialogue_manager)
 	
+	_setup_sculpted_terrain_materials()
+	
 	if split_screen_manager and bruno and milo:
 		split_screen_manager.assign_targets(bruno, milo)
 		
 	_connect_events()
 	start_beat_1_entrance()
+
+func _setup_sculpted_terrain_materials() -> void:
+	var terrain_model = get_node_or_null("World/SculptedTerrain")
+	if terrain_model:
+		var terrain_mesh = terrain_model.get_node_or_null("ForestTerrain")
+		if terrain_mesh and terrain_mesh is MeshInstance3D:
+			var mat = ShaderMaterial.new()
+			mat.shader = preload("res://src/shaders/stylized_forest_floor.gdshader")
+			mat.set_shader_parameter("soil_base_color", Color(0.20, 0.14, 0.09, 1.0))
+			mat.set_shader_parameter("soil_wet_color", Color(0.12, 0.08, 0.05, 1.0))
+			mat.set_shader_parameter("moss_color", Color(0.18, 0.46, 0.12, 1.0))
+			mat.set_shader_parameter("pine_needle_col", Color(0.40, 0.25, 0.14, 1.0))
+			mat.set_shader_parameter("moss_frequency", 0.20)
+			mat.set_shader_parameter("moss_amount", 0.65)
+			mat.set_shader_parameter("detail_frequency", 48.0)
+			mat.set_shader_parameter("wetness_distance", 5.5)
+			terrain_mesh.material_override = mat
 	
-var _frame_count: int = 0
-func _process(_delta: float) -> void:
-	if OS.is_debug_build() and _frame_count < 40:
-		_frame_count += 1
-		if _frame_count == 35:
-			var img = get_viewport().get_texture().get_image()
-			if img:
-				img.save_png("C:/Users/varun/.gemini/antigravity/brain/07cbb8e3-1ae3-4155-8c67-0401993f8d85/whispering_forest_live.png")
 
 func _play_dialogue(lines: Array[Dictionary]) -> void:
 	if dialogue_manager:

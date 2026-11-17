@@ -98,6 +98,18 @@ if (-not (Test-Path $exeTarget)) {
 }
 Write-Host "  Release executable prepared: $exeTarget" -ForegroundColor Green
 
+# Add launcher script for guaranteed execution across all Windows configurations
+$launcherPath = Join-Path $targetDir "Run_Game.bat"
+@"
+@echo off
+title Two Puppies: The Great Adventure
+cd /d "%~dp0"
+echo Launching Two Puppies: The Great Adventure...
+start "" "%~dp0TwoPuppiesTheGreatAdventure.exe" --main-pack "%~dp0TwoPuppiesTheGreatAdventure.pck"
+"@ | Set-Content -Path $launcherPath -Encoding ASCII
+Write-Host "  Convenience launcher created: $launcherPath" -ForegroundColor Green
+
+
 # Bundle metadata and documentation files
 $readmePath = Join-Path $targetDir "README.txt"
 @"

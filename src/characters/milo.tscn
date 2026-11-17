@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://src/characters/milo.gd" id="1_milo"]
 [ext_resource type="Shader" path="res://src/shaders/fur_rim_fluff.gdshader" id="2_fur_shader"]
 [ext_resource type="Shader" path="res://src/shaders/cartoon_eye.gdshader" id="3_eye_shader"]
+[ext_resource type="PackedScene" path="res://src/assets/models/stylized_milo_hero.tscn" id="4_hero_model"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_milo"]
 radius = 0.2
@@ -140,27 +141,36 @@ shape = SubResource("CapsuleShape3D_milo")
 
 [node name="VisualRoot" type="Node3D" parent="."]
 
+[node name="HeroModel" parent="VisualRoot" instance=ExtResource("4_hero_model")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, -0.04, 0.0)
+
 [node name="Body" type="MeshInstance3D" parent="VisualRoot"]
+visible = false
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.24, 0)
 mesh = SubResource("CapsuleMesh_body")
 
 [node name="ChestRuff" type="MeshInstance3D" parent="VisualRoot"]
+visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26, -0.14)
 mesh = SubResource("SphereMesh_chest")
 
 [node name="PeachBum" type="MeshInstance3D" parent="VisualRoot"]
+visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 0.22)
 mesh = SubResource("SphereMesh_bum")
 
 [node name="Collar" type="MeshInstance3D" parent="VisualRoot"]
+visible = false
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0.28, -0.14)
 mesh = SubResource("TorusMesh_collar")
 
 [node name="CollarTag" type="MeshInstance3D" parent="VisualRoot"]
+visible = false
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.18, -0.21)
 mesh = SubResource("CylinderMesh_tag")
 
 [node name="Head" type="Node3D" parent="VisualRoot"]
+visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36, -0.24)
 
 [node name="HeadMesh" type="MeshInstance3D" parent="VisualRoot/Head"]
@@ -209,6 +219,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07, -0.015)
 mesh = SubResource("PrismMesh_inner_ear")
 
 [node name="Tail" type="Node3D" parent="VisualRoot"]
+visible = false
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0.28, 0.22)
 
 [node name="TailMesh" type="MeshInstance3D" parent="VisualRoot/Tail"]
@@ -216,6 +227,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0)
 mesh = SubResource("CapsuleMesh_tail")
 
 [node name="LegFL" type="Node3D" parent="VisualRoot"]
+visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12, 0.16, -0.14)
 
 [node name="Mesh" type="MeshInstance3D" parent="VisualRoot/LegFL"]
@@ -227,6 +239,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13, -0.01)
 mesh = SubResource("SphereMesh_sock")
 
 [node name="LegFR" type="Node3D" parent="VisualRoot"]
+visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12, 0.16, -0.14)
 
 [node name="Mesh" type="MeshInstance3D" parent="VisualRoot/LegFR"]
@@ -238,6 +251,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13, -0.01)
 mesh = SubResource("SphereMesh_sock")
 
 [node name="LegRL" type="Node3D" parent="VisualRoot"]
+visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12, 0.16, 0.15)
 
 [node name="Mesh" type="MeshInstance3D" parent="VisualRoot/LegRL"]
@@ -249,6 +263,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13, 0)
 mesh = SubResource("SphereMesh_sock")
 
 [node name="LegRR" type="Node3D" parent="VisualRoot"]
+visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12, 0.16, 0.15)
 
 [node name="Mesh" type="MeshInstance3D" parent="VisualRoot/LegRR"]

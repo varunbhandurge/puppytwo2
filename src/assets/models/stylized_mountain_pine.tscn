@@ -1,0 +1,141 @@
+[gd_scene format=4]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5wjf7"]
+resource_name = "Mat_PineNeedles"
+cull_mode = 2
+albedo_color = Color(0.33183005, 0.60124344, 0.4100209, 1)
+roughness = 0.68
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_cv1jt"]
+resource_name = "stylized_mountain_pine_Cone"
+_surfaces = [{
+"aabb": AABB(-3.8, -1.2, -3.8, 7.6, 2.4, 7.6),
+"attribute_data": PackedByteArray("AAD/f/+/joL///9/AAAAAP8/joL//wAAgtc8h//v/3+CVzyH/+8AAP/f/39w642UcWuNlP/fAAD/z/9/wvh8qMJ4fKj/zwAA/7//f2/9/79wff+//78AAP+v/3/C+ILXwniC1/+vAAD/n/9/cOtw63FrcOv/nwAA/4//f4LXwviCV8L4/48AAP9//3//v2/9/z9v/f9/AAD/b/9/fKjC+Hwowvj/bwAA/1//f42UcOuOFHDr/18AAP9P/388h4LXPAeC1/9PAAD/P/9/joL/v48C/7//PwAA/y//fzyHfKg8B3yo/y8AAP8f/3+NlI2UjhSNlP8fAAD/D/9/fKg8h/8PAAB8KDyH"),
+"format": 34896613399,
+"index_count": 180,
+"index_data": PackedByteArray("AgAJAAUAAgAHAAkABwANAAkABwAKAA0ACgARAA0ACgAOABEADgAVABEADgASABUAEgAZABUAEgAWABkAFgAdABkAFgAaAB0AGgAhAB0AGgAeACEAHgAlACEAHgAiACUAIgApACUAIgAmACkAJgAtACkAJgAqAC0AKgAxAC0AKgAuADEALgA1ADEALgAyADUAMgA5ADUAMgA2ADkANgA9ADkANgA6AD0ADAAEAAgABAA8AEEAPAA0ADgANAAsADAALAAkACgAJAAcACAAHAAUABgAFAAMABAADAA8AAQAPAAsADQALAAcACQAHAAMABQADAAsADwALAAMABwAOgBAAD0AOgA+AEAAPgADAEAAPgAAAAMAPwAGAAEABgAPAAsADwAXABMAFwAfABsAHwAnACMAJwAvACsALwA3ADMANwA/ADsAPwAPAAYADwAfABcAHwAvACcALwA/ADcAPwAfAA8AHwA/AC8A"),
+"material": SubResource("StandardMaterial3D_5wjf7"),
+"name": "Mat_PineNeedles",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 66,
+"vertex_data": PackedByteArray("/38AAAAAzvj/fwAAAADO+P9/AAAAAM74/3///6F8+/f/f///oXz79/9///+hfPv3+7AAAL4J1f/7sAAAvgnV/0mB///ifIP1SYH//+J8g/WB2gAAfSX8/YHaAAB9Jfz9YYL//519XPVhgv//nX1c9UD2AAADT+7/QPYAAANP7v8cg///tX4S9xyD//+1fhL3//8AAP9/wP///wAA/3/A/12D////f8P5XYP///9/w/lA9gAA+7D89kD2AAD7sPz2HIP//0mBIf0cg///SYEh/YHaAACB2lnkgdoAAIHaWeRhgv//YYKw/mGC//9hgrD++7AAAED2lNH7sAAAQPaU0UmB//8cg8z5SYH//xyDzPn/fwAA//9jw/9/AAD//2PD/3///12D3vT/f///XYPe9ANPAABA9nm1A08AAED2ebW1fv//HIMG8bV+//8cgwbxfSUAAIHasKV9JQAAgdqwpZ19//9hglvvnX3//2GCW+++CQAA+7Disb4JAAD7sOKx4nz//0mBW/DifP//SYFb8AAAAAD/f8DCAAAAAP9/wMKhfP///3/G86F8////f8bzvgkAAANPBNG+CQAAA08E0eJ8//+1fsX44nz//7V+xfh9JQAAfSX13n0lAAB9JfXenX3//519X/6dff//nX1f/gNPAAC+CRTtA08AAL4JFO21fv//4nxH/LV+///ifEf8/j0Pxv49D8b+PQ/GUryFC1K8hQtSvIULJMDKUiTAylKMuWcGjLlnBqPCOGKjwjhiGkd3ARpHdwExwIBtMcCAbYc/egiHP3oIiLcLcYi3C3FQOWMMUDljDDKqhG0yqoRt3jSRDd40kQ3Lmgtoy5oLaOKMJbLijCWy1ok4Z9aJOGcPiyyxD4sssZBzsXKQc7FyhYgPsoWID7KoX6uLqF+ri3CFx7Rwhce061qJuOtaibjIgQu5yIELubBeqvOwXqrzj33/u499/7vAmpD/wJqQ/1h5L71YeS+9p2rp+6dq6fusdUS+rHVEvjhj7ug4Y+7oLXOKvy1zir/gUATT4FAE07C+dg2wvnYN")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_oo06s"]
+resource_name = "stylized_mountain_pine_Cone_001"
+_surfaces = [{
+"aabb": AABB(-3.2, -1.1, -3.2, 6.4, 2.2, 6.4),
+"attribute_data": PackedByteArray("AAD/f/+/joL///9/AAAAAP8/joL//wAAgtc8h//v/3+CVzyH/+8AAP/f/39w642UcWuNlP/fAAD/z/9/wvh8qMJ4fKj/zwAA/7//f2/9/79wff+//78AAP+v/3/C+ILXwniC1/+vAAD/n/9/cOtw63FrcOv/nwAA/4//f4LXwviCV8L4/48AAP9//3//v2/9/z9v/f9/AAD/b/9/fKjC+Hwowvj/bwAA/1//f42UcOuOFHDr/18AAP9P/388h4LXPAeC1/9PAAD/P/9/joL/v48C/7//PwAA/y//fzyHfKg8B3yo/y8AAP8f/3+NlI2UjhSNlP8fAAD/D/9/fKg8h/8PAAB8KDyH"),
+"format": 34896613399,
+"index_count": 180,
+"index_data": PackedByteArray("AgAJAAUAAgAHAAkABwANAAkABwAKAA0ACgARAA0ACgAOABEADgAVABEADgASABUAEgAZABUAEgAWABkAFgAdABkAFgAaAB0AGgAhAB0AGgAeACEAHgAlACEAHgAiACUAIgApACUAIgAmACkAJgAtACkAJgAqAC0AKgAxAC0AKgAuADEALgA1ADEALgAyADUAMgA5ADUAMgA2ADkANgA9ADkANgA6AD0ADAAEAAgABAA8AEEAPAA0ADgANAAsADAALAAkACgAJAAcACAAHAAUABgAFAAMABAADAA8AAQAPAAsADQALAAcACQAHAAMABQADAAsADwALAAMABwAOgBAAD0AOgA+AEAAPgADAEAAPgAAAAMAPwAGAAEABgAPAAsADwAXABMAFwAfABsAHwAnACMAJwAvACsALwA3ADMANwA/ADsAPwAPAAYADwAfABcAHwAvACcALwA/ADcAPwAfAA8AHwA/AC8A"),
+"material": SubResource("StandardMaterial3D_5wjf7"),
+"name": "Mat_PineNeedles",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 66,
+"vertex_data": PackedByteArray("/38AAAAAU/j/fwAAAABT+P9/AAAAAFP4/3////97f/f/f////3t/9/9/////e3/3+7AAAL4JmP/7sAAAvgmY/4eB//9NfNf0h4H//0181/SB2gAAfSV5/oHaAAB9JXn+04L//yt9wPTTgv//K33A9ED2AAADT9T/QPYAAANP1P+xg///d36v9rGD//93fq/2//8AAP9/sf///wAA/3+x//+D////f475/4P///9/jvlA9gAA+7Cv9kD2AAD7sK/2sYP//4eBE/2xg///h4ET/YHaAACB2iHkgdoAAIHaIeTTgv//04KC/tOC///TgoL++7AAAED2vdH7sAAAQPa90YeB//+xg0P5h4H//7GDQ/n/fwAA///mw/9/AAD//+bD/3////+D5fP/f////4Pl8wNPAABA9jK2A08AAED2MrZ3fv//sYOw73d+//+xg7DvfSUAAIHaqaV9JQAAgdqppSt9///TgtztK33//9OC3O2+CQAA+7BVsr4JAAD7sFWyTXz//4eB9O5NfP//h4H07gAAAAD/fy3DAAAAAP9/LcP/e////3+s8v97////f6zyvgkAAANPP9G+CQAAA08/0U18//93fhf4TXz//3d+F/h9JQAAfSXr3n0lAAB9JeveK33//yt9IP4rff//K30g/gNPAAC+CcPsA08AAL4Jw+x3fv//TXwg/Hd+//9NfCD8/j2oxv49qMb+PajGMbx4DDG8eAwxvHgMYS1dwGEtXcAmuf8GJrn/BgnCtmEJwrZhl0erAZdHqwFZE3rAWRN6wFE/UAlRP1AJ4bYJcOG2CXCxOGgNsThoDZmpiGyZqYhsCTSEDgk0hA42mi9nNpovZ6+NM7GvjTOxLIllZiyJZWa1iy+wtYsvsPVy5nH1cuZxCYkksQmJJLGxXmuKsV5ritaFDrTWhQ60m1kbuJtZG7gLgpu4C4KbuLJc4POyXODznH3zu5x987tYnHn/WJx5/x95Mb0feTG9hmk4/IZpOPwndUC+J3VAvp1irOmdYqzpZnKBv2Zygb+3UNTTt1DU07K+ag6yvmoO")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_0vuu3"]
+resource_name = "stylized_mountain_pine_Cone_002"
+_surfaces = [{
+"aabb": AABB(-2.6, -1, -2.6, 5.2, 2, 5.2),
+"attribute_data": PackedByteArray("AAD/f/+/joL///9/AAAAAP8/joL//wAAgtc8h//v/3+CVzyH/+8AAP/f/39w642UcWuNlP/fAAD/z/9/wvh8qMJ4fKj/zwAA/7//f2/9/79wff+//78AAP+v/3/C+ILXwniC1/+vAAD/n/9/cOtw63FrcOv/nwAA/4//f4LXwviCV8L4/48AAP9//3//v2/9/z9v/f9/AAD/b/9/fKjC+Hwowvj/bwAA/1//f42UcOuOFHDr/18AAP9P/388h4LXPAeC1/9PAAD/P/9/joL/v48C/7//PwAA/y//fzyHfKg8B3yo/y8AAP8f/3+NlI2UjhSNlP8fAAD/D/9/fKg8h/8PAAB8KDyH"),
+"format": 34896613399,
+"index_count": 180,
+"index_data": PackedByteArray("AgAJAAUAAgAHAAkABwANAAkABwAKAA0ACgARAA0ACgAOABEADgAVABEADgASABUAEgAZABUAEgAWABkAFgAdABkAFgAaAB0AGgAhAB0AGgAeACEAHgAlACEAHgAiACUAIgApACUAIgAmACkAJgAtACkAJgAqAC0AKgAxAC0AKgAuADEALgA1ADEALgAyADUAMgA5ADUAMgA2ADkANgA9ADkANgA6AD0ADAAEAAgABAA8AEEAPAA0ADgANAAsADAALAAkACgAJAAcACAAHAAUABgAFAAMABAADAA8AAQAPAAsADQALAAcACQAHAAMABQADAAsADwALAAMABwAOgBAAD0AOgA+AEAAPgADAEAAPgAAAAMAPwAGAAEABgAPAAsADwAXABMAFwAfABsAHwAnACMAJwAvACsALwA3ADMANwA/ADsAPwAPAAYADwAfABcAHwAvACcALwA/ADcAPwAfAA8AHwA/AC8A"),
+"material": SubResource("StandardMaterial3D_5wjf7"),
+"name": "Mat_PineNeedles",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 66,
+"vertex_data": PackedByteArray("/38AAAAArff/fwAAAACt9/9/AAAAAK33/3///xN72fb/f///E3vZ9v9///8Te9n2+7AAAL4J1P77sAAAvgnU/uGB//9ze+zz4YH//3N77POB2gAAfSUh/4HaAAB9JSH/eoP//4R88PN6g///hHzw80D2AAADT4X/QPYAAANPhf+LhP//HX419ouE//8dfjX2//8AAP9/mv///wAA/3+a/+uE////f1L564T///9/UvlA9gAA+7BF9kD2AAD7sEX2i4T//+GBCP2LhP//4YEI/YHaAACB2t3jgdoAAIHa3eN6g///eoM//nqD//96gz/++7AAAED2ANL7sAAAQPYA0uGB//+LhID44YH//4uEgPj/fwAA//+pxP9/AAD//6nE/3///+uEhfL/f///64SF8gNPAABA9lC3A08AAED2ULcdfv//i4TK7R1+//+LhMrtfSUAAIHap6V9JQAAgdqnpYR8//96g7rrhHz//3qDuuu+CQAA+7AMs74JAAD7sAyzc3v//+GB9uxze///4YH27AAAAAD/f9DDAAAAAP9/0MMTe////38f8RN7////fx/xvgkAAANPmdG+CQAAA0+Z0XN7//8dfiD3c3v//x1+IPd9JQAAfSXn3n0lAAB9JefehHz//4R8wf2EfP//hHzB/QNPAAC+CVrsA08AAL4JWuwdfv//c3vy+x1+//9ze/L7Bj6FxwY+hccGPoXHDLzNDQy8zQ0MvM0Npi0cwaYtHMGhuN8HobjfBzHB/2Axwf9gQEj3AUBI9wGFFG3BhRRtwfo+hQr6PoUK+LWpbvi1qW7QN9IO0DfSDsSoMGvEqDBr4zLOD+Myzg9pmQVmaZkFZsKO5a/CjuWvQ4hFZUOIRWWSjNaukozWrjBy1XAwctVwuonlr7qJ5a9pXaKIaV2iiGOGFLNjhhSzzVeAt81XgLdvgge4b4IHuBZaQfQWWkH0un3zu7p987t7nlT/e55U/9x4Qb3ceEG9AGig/ABooPx7dEO+e3RDvslhq+rJYavqWnF1v1pxdb+CUPfUglD31Le+tw+3vrcP")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_sc15s"]
+resource_name = "stylized_mountain_pine_Cone_003"
+_surfaces = [{
+"aabb": AABB(-2, -0.9, -2, 4, 1.8, 4),
+"attribute_data": PackedByteArray("AAD/f/+/joL///9/AAAAAP8/joL//wAAgtc8h//v/3+CVzyH/+8AAP/f/39w642UcWuNlP/fAAD/z/9/wvh8qMJ4fKj/zwAA/7//f2/9/79wff+//78AAP+v/3/C+ILXwniC1/+vAAD/n/9/cOtw63FrcOv/nwAA/4//f4LXwviCV8L4/48AAP9//3//v2/9/z9v/f9/AAD/b/9/fKjC+Hwowvj/bwAA/1//f42UcOuOFHDr/18AAP9P/388h4LXPAeC1/9PAAD/P/9/joL/v48C/7//PwAA/y//fzyHfKg8B3yo/y8AAP8f/3+NlI2UjhSNlP8fAAD/D/9/fKg8h/8PAAB8KDyH"),
+"format": 34896613399,
+"index_count": 180,
+"index_data": PackedByteArray("AgAJAAUAAgAHAAkABwANAAkABwAKAA0ACgARAA0ACgAOABEADgAVABEADgASABUAEgAZABUAEgAWABkAFgAdABkAFgAaAB0AGgAhAB0AGgAeACEAHgAlACEAHgAiACUAIgApACUAIgAmACkAJgAtACkAJgAqAC0AKgAxAC0AKgAuADEALgA1ADEALgAyADUAMgA5ADUAMgA2ADkANgA9ADkANgA6AD0ADAAEAAgABAA8AEEAPAA0ADgANAAsADAALAAkACgAJAAcACAAHAAUABgAFAAMABAADAA8AAQAPAAsADQALAAcACQAHAAMABQADAAsADwALAAMABwAOgBAAD0AOgA+AEAAPgADAEAAPgAAAAMAPwAGAAEABgAPAAsADwAXABMAFwAfABsAHwAnACMAJwAvACsALwA3ADMANwA/ADsAPwAPAAYADwAfABcAHwAvACcALwA/ADcAPwAfAA8AHwA/AC8A"),
+"material": SubResource("StandardMaterial3D_5wjf7"),
+"name": "Mat_PineNeedles",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 66,
+"vertex_data": PackedByteArray("/38AAAAAw/b/fwAAAADD9v9/AAAAAMP2/3///5l58/X/f///mXnz9f9///+ZefP1+7AAAL4Jwf37sAAAvgnB/XKC//8VeprycoL//xV6mvKB2gAAfSXw/4HaAAB9JfD/hoT//3h70vKGhP//eHvS8kD2AAADTxj/QPYAAANPGP/phf//jH2m9emF//+Mfab1//8AAP9/cP///wAA/39w/2WG////fxb5ZYb///9/FvlA9gAA+7Cp9UD2AAD7sKn16YX//3KCBP3phf//coIE/YHaAACB2orjgdoAAIHaiuOGhP//hoTX/YaE//+GhNf9+7AAAED2edL7sAAAQPZ50nKC///phVn3coL//+mFWff/fwAA///lxf9/AAD//+XF/3///2WGcPD/f///ZYZw8ANPAABA9i+5A08AAED2L7mMff//6YXr6ox9///phevqfSUAAIHat6V9JQAAgdq3pXh7//+GhIXoeHv//4aEhei+CQAA+7BStL4JAAD7sFK0FXr//3KC+OkVev//coL46QAAAAD/f9nEAAAAAP9/2cSZef///3/I7pl5////f8juvgkAAANPMNK+CQAAA08w0hV6//+Mfaj1FXr//4x9qPV9JQAAfSXz3n0lAAB9JfPeeHv//3h7Kv14e///eHsq/QNPAAC+CdDrA08AAL4J0OuMff//FXq/+4x9//8Ver/7Hz7byB8+28gfPtvI6bvND+m7zQ/pu80PGS5EwhkuRMLyt0QJ8rdECREgE8ARIBPAMUlvAjFJbwI4FtTCOBbUwls+YgxbPmIMnrStbJ60rWx3NugQdzboEIenQmmHp0JpNjGkETYxpBE7mFtkO5hbZEOQCK5DkAiu94aoY/eGqGPGjeisxo3orDFxUW8xcVFvs4odrrOKHa6nW+OFp1vjhS+HtrEvh7axKlWVtipVlbYLg0G3C4NBt4xW/fSMVv30/H0VvPx9Fbx9oRX/faEV/5Z4db2WeHW93GUv/dxlL/2ac1i+mnNYvpZgE+yWYBPs6m9pv+pvab87UKnWO1Cp1se+lBHHvpQR")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_4a12k"]
+resource_name = "stylized_mountain_pine_Cone_004"
+_surfaces = [{
+"aabb": AABB(-1.3, -0.8, -1.3, 2.6, 1.6, 2.6),
+"attribute_data": PackedByteArray("AAD/f/+/joL///9/AAAAAP8/joL//wAAgtc8h//v/3+CVzyH/+8AAP/f/39w642UcWuNlP/fAAD/z/9/wvh8qMJ4fKj/zwAA/7//f2/9/79wff+//78AAP+v/3/C+ILXwniC1/+vAAD/n/9/cOtw63FrcOv/nwAA/4//f4LXwviCV8L4/48AAP9//3//v2/9/z9v/f9/AAD/b/9/fKjC+Hwowvj/bwAA/1//f42UcOuOFHDr/18AAP9P/388h4LXPAeC1/9PAAD/P/9/joL/v48C/7//PwAA/y//fzyHfKg8B3yo/y8AAP8f/3+NlI2UjhSNlP8fAAD/D/9/fKg8h/8PAAB8KDyH"),
+"format": 34896613399,
+"index_count": 180,
+"index_data": PackedByteArray("AgAJAAUAAgAHAAkABwANAAkABwAKAA0ACgARAA0ACgAOABEADgAVABEADgASABUAEgAZABUAEgAWABkAFgAdABkAFgAaAB0AGgAhAB0AGgAeACEAHgAlACEAHgAiACUAIgApACUAIgAmACkAJgAtACkAJgAqAC0AKgAxAC0AKgAuADEALgA1ADEALgAyADUAMgA5ADUAMgA2ADkANgA9ADkANgA6AD0ADAAEAAgABAA8AEEAPAA0ADgANAAsADAALAAkACgAJAAcACAAHAAUABgAFAAMABAADAA8AAQAPAAsADQALAAcACQAHAAMABQADAAsADwALAAMABwAOgBAAD0AOgA+AEAAPgADAEAAPgAAAAMAPwAGAAEABgAPAAsADwAXABMAFwAfABsAHwAnACMAJwAvACsALwA3ADMANwA/ADsAPwAPAAYADwAfABcAHwAvACcALwA/ADcAPwAfAA8AHwA/AC8A"),
+"material": SubResource("StandardMaterial3D_5wjf7"),
+"name": "Mat_PineNeedles",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 66,
+"vertex_data": PackedByteArray("/38AAAAAE/X/fwAAAAAT9f9/AAAAABP1/3///yZ2VvT/f///JnZW9P9///8mdlb0+7AAAL4Jufv7sAAAvgm5+8SD///mdvjvxIP//+Z2+O+B2gAAfSU4/oHaAAB9JTj+9Yb//wl5vvD1hv//CXm+8ED2AAADT1r+QPYAAANPWv4Yif//OnwK9RiJ//86fAr1//8AAP9//f7//wAA/3/9/tiJ////f/742In///9//vhA9gAA+7Bx9ED2AAD7sHH0GIn//8SDKv0Yif//xIMq/YHaAACB2iXjgdoAAIHaJeP1hv//9Ybs/PWG///1huz8+7AAAED2wtP7sAAAQPbC08SD//8Yid/0xIP//xiJ3/T/fwAA///UyP9/AAD//9TI/3///9iJ8ev/f///2Inx6wNPAABA9v+9A08AAED2/706fP//GInE5Dp8//8YicTkfSUAAIHaFKZ9JQAAgdoUpgl5///1hrDhCXn///WGsOG+CQAA+7Dht74JAAD7sOG35nb//8SDnOPmdv//xIOc4wAAAAD/f1vHAAAAAP9/W8cmdv///3/Q6SZ2////f9DpvgkAAANPo9O+CQAAA0+j0+Z2//86fILy5nb//zp8gvJ9JQAAfSVN330lAAB9JU3fCXn//wl5xvsJef//CXnG+wNPAAC+CfLqA08AAL4J8uo6fP//5naS+zp8///mdpL7hD7Yy4Q+2MuEPtjL5LsJFOS7CRTkuwkUOi/ixDov4sTitqAM4ragDFgi2cJYItnCBUt+AwVLfgOnGcrFpxnKxZ08kBCdPJAQw7G0aMOxtGiFMy4VhTMuFeykcmXspHJl0S01FdEtNRXQlRxh0JUcYRqTUqoak1KqcIR9YHCEfWAHkBOpB5ATqaFvYGyhb2BsiYyfqomMn6q/WK9/v1ivf76IKK++iCiv0E+dtNBPnbRehPa1XoT2tUNQOvdDUDr3zX7YvM1+2Lwyp3H+Mqdx/mB4UL5geFC+xWE4/sVhOP4lcsW+JXLFvixewe4sXsHuQ21jv0NtY7+4TzPauE8z2v2+ORX9vjkV")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fgr0k"]
+resource_name = "Mat_PineBark"
+cull_mode = 2
+albedo_color = Color(0.5271128, 0.42358288, 0.3491902, 1)
+roughness = 0.9
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_n76vt"]
+resource_name = "stylized_mountain_pine_Cylinder"
+_surfaces = [{
+"aabb": AABB(-0.45, -6, -0.45, 0.9, 12, 0.9),
+"attribute_data": PackedByteArray("AAD/f/+/joL///9/AAAAAP8/joL//wAAgtc8h//v/3+CVzyH/+8AAP/f/39w642UcWuNlP/fAAD/z/9/wvh8qMJ4fKj/zwAA/7//f2/9/79wff+//78AAP+v/3/C+ILXwniC1/+vAAD/n/9/cOtw63FrcOv/nwAA/4//f4LXwviCV8L4/48AAP9//3//v2/9/z9v/f9/AAD/b/9/fKjC+Hwowvj/bwAA/1//f42UcOuOFHDr/18AAP9P/388h4LXPAeC1/9PAAD/P/9/joL/v48C/7//PwAA/y//fzyHfKg8B3yo/y8AAP8f/3+NlI2UjhSNlP8fAAD/D/9/fKg8h/8PAAB8KDyH"),
+"format": 34896613399,
+"index_count": 180,
+"index_data": PackedByteArray("AgAJAAUAAgAHAAkABwANAAkABwAKAA0ACgARAA0ACgAOABEADgAVABEADgASABUAEgAZABUAEgAWABkAFgAdABkAFgAaAB0AGgAhAB0AGgAeACEAHgAlACEAHgAiACUAIgApACUAIgAmACkAJgAtACkAJgAqAC0AKgAxAC0AKgAuADEALgA1ADEALgAyADUAMgA5ADUAMgA2ADkANgA9ADkANgA6AD0ADAAEAAgABAA8AEEAPAA0ADgANAAsADAALAAkACgAJAAcACAAHAAUABgAFAAMABAADAA8AAQAPAAsADQALAAcACQAHAAMABQADAAsADwALAAMABwAOgBAAD0AOgA+AEAAPgADAEAAPgAAAAMAPwAGAAEABgAPAAsADwAXABMAFwAfABsAHwAnACMAJwAvACsALwA3ADMANwA/ADsAPwAPAAYADwAfABcAHwAvACcALwA/ADcAPwAfAA8AHwA/AC8A"),
+"material": SubResource("StandardMaterial3D_fgr0k"),
+"name": "Mat_PineBark",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 66,
+"vertex_data": PackedByteArray("/38AAAAAj/H/fwAAAACP8f9/AAAAAI/x/3///wAAj/H/f///AACP8f9///8AAI/x+7AAAL4JtPb7sAAAvgm09vuw//++Cdbm+7D//74J1uaB2gAAfSVL+oHaAAB9JUv6gdr//30lmOqB2v//fSWY6kD2AAADT9L9QPYAAANP0v1A9v//A0/d+kD2//8DT936//8AAP9/zPv//wAA/3/M+///////f8z7//////9/zPtA9gAA+7AE8UD2AAD7sATxQPb///uw6/5A9v//+7Dr/oHaAACB2hvlgdoAAIHaG+WB2v//gdp4+IHa//+B2nj4+7AAAED2eNz7sAAAQPZ43Puw//9A9qnp+7D//0D2qen/fwAA///X2P9/AAD//9fY/3//////19j/f//////X2ANPAABA9qLcA08AAED2otwDT///QPZ/zANP//9A9n/MfSUAAIHaafh9JQAAgdpp+H0l//+B2tvHfSX//4Ha28e+CQAA+7Dr074JAAD7sOvTvgn///uwdMu+Cf//+7B0ywAAAAD/fxXWAAAAAP9/FdYAAP///38V1gAA////fxXWvgkAAANPZ9y+CQAAA09n3L4J//8DTxzlvgn//wNPHOV9JQAAfSWy430lAAB9JbLjfSX//30lnvR9Jf//fSWe9ANPAAC+CfnqA08AAL4J+eoDT///vgmu/QNP//++Ca79oEGk2qBBpNqgQaTaXr5aJV6+WiVevlol5DXG0uQ1xtK6uSYkurkmJLksltC5LJbQBlGqCAZRqghJJ37TSSd+06EtOyahLTsm7aTeWe2k3lkgJu4kICbuJM6Z/VfOmf1XzyDhIM8g4SCSjOtVkozrVf2bh5z9m4ecD31aVw99WlfGls+axpbPmp5ud2GebndhYJGHnmCRh56nY5Zop2OWaC6MaKgujGio1t1o6tbdaOrFh4C1xYeAtS7EqfkuxKn59IIzwvSCM8KduMj6nbjI+sl6YMfJemDHDK2h/gytof4JcCzECXAsxAhV+fYIVfn2GWbgwBlm4MCRTRfokU0X6PW/ICH1vyAh")
+}]
+blend_shape_mode = 0
+
+[node name="stylized_mountain_pine" type="Node3D" unique_id=1227058909]
+
+[node name="Cone" type="MeshInstance3D" parent="." unique_id=982529654]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+mesh = SubResource("ArrayMesh_cv1jt")
+
+[node name="Cone_001" type="MeshInstance3D" parent="." unique_id=1024326450]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.2, 0)
+mesh = SubResource("ArrayMesh_oo06s")
+
+[node name="Cone_002" type="MeshInstance3D" parent="." unique_id=1461399577]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.2, 0)
+mesh = SubResource("ArrayMesh_0vuu3")
+
+[node name="Cone_003" type="MeshInstance3D" parent="." unique_id=1313233564]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
+mesh = SubResource("ArrayMesh_sc15s")
+
+[node name="Cone_004" type="MeshInstance3D" parent="." unique_id=1635740616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.6, 0)
+mesh = SubResource("ArrayMesh_4a12k")
+
+[node name="Cylinder" type="MeshInstance3D" parent="." unique_id=752274638]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+mesh = SubResource("ArrayMesh_n76vt")
