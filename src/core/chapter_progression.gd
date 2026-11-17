@@ -42,11 +42,11 @@ const CHAPTERS: Array[Dictionary] = [
 	},
 	{
 		"index": 4,
-		"id": "ch4_forest",
-		"title": "Chapter 4: The Forest of Giants",
-		"subtitle": "Mossy Redwoods & High Canopy Ropes",
-		"scene_path": "res://src/chapters/chapter_4_forest_of_giants/chapter_4_forest_of_giants.tscn",
-		"boss": "Corvus the Crow King",
+		"id": "ch4_whispering_forest",
+		"title": "The Whispering Forest (Vertical Slice)",
+		"subtitle": "Stream Crossing, See-Saw Ravine & Ancient Shrine",
+		"scene_path": "res://src/chapters/the_whispering_forest/the_whispering_forest.tscn",
+		"boss": "Resonance Shrine Guardian",
 		"bones_count": 8
 	},
 	{

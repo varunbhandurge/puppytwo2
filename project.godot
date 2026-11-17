@@ -9,7 +9,7 @@ config_version=5
 config/name="Two Puppies: The Great Adventure"
 config/description="Premium 3D cooperative adventure game following two puppy protagonists."
 config/version="1.0.0"
-run/main_scene="res://src/chapters/chapter_1_backyard/chapter_1_backyard.tscn"
+run/main_scene="res://src/chapters/the_whispering_forest/the_whispering_forest.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 

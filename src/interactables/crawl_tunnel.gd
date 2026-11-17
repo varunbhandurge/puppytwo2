@@ -4,8 +4,9 @@ class_name CrawlTunnel extends Node3D
 
 @export var tunnel_id: String = "tunnel_01"
 @export var entrance_prompt: String = "Press [Crawl] to slip inside!"
+@export var exit_position: Vector3 = Vector3.ZERO
 
-@onready var trigger_zone: Area3D = $TriggerZone
+@onready var trigger_zone: Area3D = get_node_or_null("TriggerZone")
 
 func _ready() -> void:
 	if trigger_zone:

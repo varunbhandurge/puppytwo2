@@ -28,3 +28,6 @@ func update_text(title: String, instruction: String) -> void:
 	beacon_instruction = instruction
 	if label_3d:
 		label_3d.text = "▼ %s ▼\n%s" % [title, instruction]
+
+func set_label(text: String) -> void:
+	update_text(beacon_title, text)
